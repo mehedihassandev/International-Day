@@ -41,7 +41,7 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="relative w-full max-w-xl bg-white rounded-2xl overflow-hidden shadow-premium flex flex-col md:flex-row"
+                        className="relative w-full max-w-xl bg-white rounded-2xl overflow-hidden shadow-premium flex flex-col md:flex-row max-h-[90vh]"
                     >
                         {/* Close Button */}
                         <button
@@ -52,7 +52,7 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                         </button>
 
                         {/* Left: Image Section */}
-                        <div className="relative w-full md:w-5/12 h-56 md:h-auto bg-earth-light/20 overflow-hidden">
+                        <div className="relative w-full md:w-5/12 h-56 md:h-auto bg-earth-light/20 overflow-hidden flex-shrink-0">
                             {fact.image ? (
                                 <img
                                     src={fact.image}
@@ -87,7 +87,7 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                         </div>
 
                         {/* Right: Content Section */}
-                        <div className="flex-1 p-6 md:p-8 flex flex-col">
+                        <div className="flex-1 p-6 md:p-8 flex flex-col overflow-y-auto">
                             <div className="flex items-center gap-2 mb-4">
                                 <span className="px-2 py-1 bg-bd-green/10 text-bd-green text-[10px] font-black rounded-md uppercase">
                                     {fact.category}
