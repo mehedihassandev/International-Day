@@ -12,9 +12,9 @@ import { UtensilsCrossed, Flame, Leaf, Coffee } from 'lucide-react';
  */
 export default function FoodsPage() {
   return (
-    <div className="min-h-screen bg-[#fcfcfc] pb-24">
+    <div className="min-h-screen bg-earth-soft pb-16">
       {/* Hero Header */}
-      <div className="bg-bd-green py-20 relative overflow-hidden">
+      <div className="bg-bd-green py-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-64 h-64 border-4 border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-96 h-96 border-8 border-white/10 rounded-full translate-x-1/3 translate-y-1/3" />
@@ -29,7 +29,7 @@ export default function FoodsPage() {
             <div className="h-16 w-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
               <UtensilsCrossed size={32} />
             </div>
-            <h1 className="text-5xl md:text-6xl font-black mb-6">Traditional Kitchen</h1>
+            <h1 className="text-4xl md:text-5xl font-black mb-4">Traditional Kitchen</h1>
             <p className="text-lg text-white/80 max-w-2xl font-medium">
               From the pungent Mustard Hilsa to the royal Kacchi Biryani, discover the authentic flavors that define the soul of Bangladesh.
             </p>
@@ -39,7 +39,7 @@ export default function FoodsPage() {
 
       <div className="container mx-auto px-4">
         {/* Category Filters (Sticky) */}
-        <div className="sticky top-20 z-40 flex flex-wrap justify-center gap-4 py-8 bg-[#fcfcfc]/80 backdrop-blur-md mb-8">
+        <div className="sticky top-20 z-40 flex flex-wrap justify-center gap-3 py-6 bg-earth-soft/90 backdrop-blur-md mb-8">
           {[
             { label: 'Popular Snacks', icon: Flame },
             { label: 'Royal Meals', icon: Coffee },
@@ -50,7 +50,7 @@ export default function FoodsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.1 }}
-              className="flex items-center gap-2 px-6 py-3 bg-white rounded-2xl shadow-sm border font-black text-xs uppercase tracking-widest text-bd-green hover:border-bd-green/30 transition-all cursor-pointer"
+              className="flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] bg-white rounded-2xl shadow-sm border font-black text-xs uppercase tracking-widest text-bd-green hover:border-bd-green/30 transition-all cursor-pointer"
             >
               <cat.icon size={16} className="text-bd-red" />
               {cat.label}
@@ -66,7 +66,7 @@ export default function FoodsPage() {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-24 text-center">
+        <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-3 px-8 py-4 bg-muted/30 rounded-full border">
             <span className="text-sm font-bold text-muted-foreground">
               More traditional recipes coming soon...

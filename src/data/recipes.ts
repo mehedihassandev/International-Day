@@ -34,7 +34,7 @@ export const recipes: Recipe[] = [
       "Shape into small flat patties (bite-sized is best for events).",
       "Shallow fry on medium heat until golden brown on both sides."
     ],
-    image: "/images/recipes/chicken-tikiya.svg",
+    image: "https://images.unsplash.com/photo-1599631252119-a9fd18338cf1?w=800",
     imagePrompt: "Crispy golden brown Chicken Tikiya patties on a white plate, garnished with fresh cilantro and onion rings, served with green chutney."
   },
   {
@@ -59,7 +59,7 @@ export const recipes: Recipe[] = [
       "Shape into patties.",
       "Fry until browned and fully cooked inside."
     ],
-    image: "/images/recipes/beef-tikiya.svg",
+    image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",
     imagePrompt: "Deliciously thick Beef Tikiya patties, dark brown crust, moist inside, served with fragrant Polao rice and salad."
   },
   {
@@ -83,7 +83,7 @@ export const recipes: Recipe[] = [
       "Make a medium-thick batter with gram flour and water.",
       "Dip the potato balls and deep fry until golden and crispy."
     ],
-    image: "/images/recipes/alur-chop.svg",
+    image: "https://images.unsplash.com/photo-1541529086526-db283c563270?w=800",
     imagePrompt: "Street-style Alur Chop (potato fritters), crispy yellow-orange batter, served in a recycled paper bowl, very appetizing."
   },
   {
@@ -105,7 +105,7 @@ export const recipes: Recipe[] = [
       "Pour a thin layer of batter like a pancake.",
       "Cook both sides until slightly crispy."
     ],
-    image: "/images/recipes/chapti.svg",
+    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800",
     imagePrompt: "Traditional Chapti pancake on a cast iron pan, thin and crispy edges, visible bits of green chili and coriander, rustic kitchen setting."
   },
   {
@@ -128,7 +128,7 @@ export const recipes: Recipe[] = [
       "Add mustard paste, chilies, and a little warm water.",
       "Simmer covered until fish is tender and gravy is thick."
     ],
-    image: "/images/recipes/shorshe-ilish.svg",
+    image: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800",
     imagePrompt: "Classic Shorshe Ilish fish curry, silver hilsa pieces in a thick yellow mustard gravy, green chilies on top, served in a traditional clay bowl."
   },
   {
@@ -150,7 +150,7 @@ export const recipes: Recipe[] = [
       "Add par-boiled rice (70% cooked) on top.",
       "Seal pot with dough and cook on low heat for 1 hour until meat is tender."
     ],
-    image: "/images/recipes/kacchi-biryani.svg",
+    image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=800",
     imagePrompt: "Royal Kacchi Biryani served in a large silver 'degh' or plate, tender mutton pieces bursting through fragrant rice, golden potatoes."
   },
   {
@@ -171,7 +171,7 @@ export const recipes: Recipe[] = [
       "Boil and reduce milk for malai until thick.",
       "Soak the discs in the thickened milk and chill before serving."
     ],
-    image: "/images/recipes/rasmalai.svg",
+    image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800",
     imagePrompt: "Cumilla's famous Rasmalai, small white cheese discs in thick creamy milk, garnished with saffron strands and pistachios, served in a traditional bowl."
   },
   {
@@ -190,7 +190,7 @@ export const recipes: Recipe[] = [
       "Cool to lukewarm and whisk in the starter.",
       "Pour into a clay pot and let set in a warm place for 8-12 hours."
     ],
-    image: "/images/recipes/bogura-doi.svg",
+    image: "https://images.unsplash.com/photo-1563805042-7684c8a9e9cb?w=800",
     imagePrompt: "Bogura's famous Sweet Curd (Doi) in a rustic clay pot, dense and creamy texture, deep brownish-orange color, perfectly set."
   }
 ];

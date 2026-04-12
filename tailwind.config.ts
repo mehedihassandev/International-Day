@@ -69,15 +69,27 @@ export default {
           DEFAULT: '#006A4E',
           dark: '#004d39',
           light: '#008562',
+          soft: '#E8F5E9',
         },
         'bd-red': {
           DEFAULT: '#F42A41',
           hover: '#d12437',
+          soft: '#FFEBEE',
         },
         'bd-gold': {
-          DEFAULT: '#FFD700',
-          muted: '#DAA520',
+          DEFAULT: '#FFB300',
+          muted: '#FFA000',
+          soft: '#FFF8E1',
         },
+        'earth': {
+          DEFAULT: '#8D6E63',
+          light: '#D7CCC8',
+          soft: '#F5F5F5',
+        },
+      },
+      boxShadow: {
+        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+        'premium': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Compass, UtensilsCrossed } from 'lucide-react';
+import { Compass, UtensilsCrossed, Library } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -16,6 +16,7 @@ export function Navigation() {
 
   const navItems = [
     { name: 'Explore Facts', href: '/', icon: Compass },
+    { name: 'Heritage Gallery', href: '/heritage', icon: Library },
     { name: 'Bengali Kitchen', href: '/foods', icon: UtensilsCrossed },
   ];
 
@@ -51,7 +52,7 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'relative flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300',
+                    'relative flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-300',
                     isActive ? 'text-white' : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
