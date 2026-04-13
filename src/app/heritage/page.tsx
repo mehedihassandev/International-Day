@@ -14,9 +14,9 @@ export default function HeritagePage() {
     const [selectedFact, setSelectedFact] = useState<Fact | null>(null);
 
     return (
-        <div className="min-h-screen bg-earth-soft pb-16">
+        <div className="min-h-screen bg-gradient-to-b from-bd-green-soft via-white to-bd-red-soft pb-16">
             {/* Hero Header */}
-            <div className="bg-bd-red py-12 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-bd-red to-bd-red-hover py-14 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 right-0 w-80 h-80 border-4 border-white/20 rounded-full translate-x-1/3 -translate-y-1/3" />
                     <div className="absolute bottom-0 left-0 w-64 h-64 border-8 border-white/10 rounded-full -translate-x-1/2 translate-y-1/3" />
@@ -52,7 +52,7 @@ export default function HeritagePage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05 }}
                             onClick={() => setSelectedFact(fact)}
-                            className="group cursor-pointer bg-white rounded-2xl border shadow-soft hover:shadow-premium transition-all duration-300 overflow-hidden flex flex-col"
+                            className="group cursor-pointer bg-white/90 backdrop-blur-sm rounded-2xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 shadow-soft hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] transition-all duration-300 overflow-hidden flex flex-col"
                         >
                             {/* Image Section */}
                             <div className="relative w-full h-48 overflow-hidden bg-earth-light/20">
@@ -77,7 +77,7 @@ export default function HeritagePage() {
                             {/* Info Section */}
                             <div className="p-6 flex flex-col flex-1">
                                 <div className="flex items-center gap-2 mb-3">
-                                    <span className="px-2 py-1 bg-bd-red/10 text-bd-red text-[10px] font-black rounded-md uppercase">
+                                    <span className="px-3 py-1 bg-bd-green/10 text-bd-green text-[10px] font-black rounded-full uppercase tracking-wider border border-bd-green/20">
                                         {fact.category}
                                     </span>
                                 </div>

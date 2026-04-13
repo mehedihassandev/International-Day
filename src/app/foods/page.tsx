@@ -15,9 +15,9 @@ export default function FoodsPage() {
     const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
 
     return (
-        <div className="min-h-screen bg-earth-soft pb-16">
+        <div className="min-h-screen bg-gradient-to-b from-bd-green-soft via-white to-bd-red-soft pb-16">
             {/* Hero Header */}
-            <div className="bg-bd-green py-12 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-bd-green to-bd-green-dark py-14 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-64 h-64 border-4 border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2" />
                     <div className="absolute bottom-0 right-0 w-96 h-96 border-8 border-white/10 rounded-full translate-x-1/3 translate-y-1/3" />
@@ -46,7 +46,7 @@ export default function FoodsPage() {
 
             <div className="container mx-auto px-4">
                 {/* Category Filters (Sticky) */}
-                <div className="sticky top-20 z-40 flex flex-wrap justify-center gap-3 py-6 bg-earth-soft/90 backdrop-blur-md mb-8">
+                <div className="sticky top-20 z-40 flex flex-wrap justify-center gap-3 py-6 bg-white/80 backdrop-blur-xl mb-8 border-b border-bd-green/10">
                     {[
                         { label: "Popular Snacks", icon: Flame },
                         { label: "Royal Meals", icon: Coffee },
@@ -57,7 +57,7 @@ export default function FoodsPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + i * 0.1 }}
-                            className="flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] bg-white rounded-2xl shadow-sm border font-black text-xs uppercase tracking-widest text-bd-green hover:border-bd-green/30 transition-all cursor-pointer"
+                            className="flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] bg-white/90 rounded-2xl shadow-sm border-2 border-bd-green/15 font-black text-xs uppercase tracking-widest text-bd-green hover:text-bd-red hover:border-bd-red/40 hover:bg-bd-red/5 transition-all cursor-pointer"
                         >
                             <cat.icon size={16} className="text-bd-red" />
                             {cat.label}
@@ -78,7 +78,7 @@ export default function FoodsPage() {
 
                 {/* Footer Note */}
                 <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-3 px-8 py-4 bg-muted/30 rounded-full border">
+                    <div className="inline-flex items-center gap-3 px-8 py-4 bg-bd-green/5 rounded-full border-2 border-bd-green/15">
                         <span className="text-sm font-bold text-muted-foreground">
                             More traditional recipes coming soon...
                         </span>
