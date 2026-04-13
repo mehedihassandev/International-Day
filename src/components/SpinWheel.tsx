@@ -162,8 +162,8 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                                     />
                                     {/* Text label with rotation */}
                                     <text
-                                        x="75"
-                                        y="50"
+                                        x="78"
+                                        y="51"
                                         fill="white"
                                         fontSize="2.8"
                                         fontWeight="800"
