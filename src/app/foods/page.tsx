@@ -75,15 +75,6 @@ export default function FoodsPage() {
                         />
                     ))}
                 </div>
-
-                {/* Footer Note */}
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-3 px-8 py-4 bg-bd-green/5 rounded-full border-2 border-bd-green/15">
-                        <span className="text-sm font-bold text-muted-foreground">
-                            More traditional recipes coming soon...
-                        </span>
-                    </div>
-                </div>
             </div>
 
             <RecipeModal
