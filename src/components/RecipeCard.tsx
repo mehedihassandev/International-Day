@@ -23,10 +23,10 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ y: -5 }}
             onClick={onClick}
-            className="group relative bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-800/80 dark:to-gray-900/60 backdrop-blur-xl border border-white/40 dark:border-gray-700/50 rounded-3xl overflow-hidden shadow-soft hover:shadow-premium transition-all duration-500 flex flex-col cursor-pointer"
+            className="group relative bg-white/90 dark:from-gray-800/80 dark:to-gray-900/60 backdrop-blur-xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] dark:border-gray-700/50 rounded-3xl overflow-hidden shadow-soft transition-all duration-500 flex flex-col cursor-pointer"
         >
             {/* Top Banner (National Green Gradient) */}
-            <div className="h-2 w-full bg-gradient-to-r from-bd-green via-emerald-500 to-bd-green" />
+            <div className="h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green" />
 
             {/* Thumbnail Image */}
             {recipe.image && (
@@ -64,7 +64,7 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                     </div>
                 </div>
 
-                <h3 className="text-2xl font-black text-gray-800 dark:text-white mb-3 leading-tight group-hover:text-bd-green transition-colors">
+                <h3 className="text-2xl font-black text-gray-800 dark:text-white mb-3 leading-tight group-hover:text-bd-red transition-colors">
                     {recipe.title}
                 </h3>
 

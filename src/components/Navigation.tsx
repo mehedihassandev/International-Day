@@ -21,29 +21,29 @@ export function Navigation() {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 w-full glass shadow-sm">
+        <nav className="sticky top-0 z-50 w-full bg-bd-green/95 dark:bg-[#004d39]/95 backdrop-blur-xl shadow-lg border-b border-white/10">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo Section */}
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative h-12 w-12 flex items-center justify-center">
                             {/* Stylized BD Flag Logo */}
-                            <div className="absolute inset-0 bg-bd-green rounded-xl rotate-3 group-hover:rotate-0 transition-transform duration-300 shadow-lg" />
-                            <div className="relative h-6 w-6 bg-bd-red rounded-full shadow-inner animate-glow" />
+                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl rotate-3 group-hover:rotate-0 transition-transform duration-300 shadow-lg border border-white/20" />
+                            <div className="relative h-6 w-6 bg-bd-red rounded-full shadow-[0_0_15px_rgba(244,42,65,0.6)] animate-glow" />
                         </div>
                         <div className="hidden sm:block">
-                            <span className="text-xl font-black tracking-tight text-bd-green block leading-none">
+                            <span className="text-xl font-black tracking-tight text-white block leading-none drop-shadow-sm">
                                 INTERNATIONAL{" "}
-                                <span className="text-bd-red">DAY</span>
+                                <span className="text-bd-red drop-shadow-[0_1px_5px_rgba(244,42,65,0.4)]">DAY</span>
                             </span>
-                            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-muted-foreground">
+                            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-white/70">
                                 Heritage of Bangladesh
                             </span>
                         </div>
                     </Link>
 
                     {/* Navigation Items */}
-                    <div className="flex items-center gap-2 bg-muted/30 p-1 rounded-2xl border">
+                    <div className="flex items-center gap-2 bg-black/20 p-1 rounded-2xl border border-white/10">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href;
                             const Icon = item.icon;
@@ -53,16 +53,16 @@ export function Navigation() {
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
-                                        "relative flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-300",
+                                        "relative flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] rounded-xl text-sm font-bold transition-all duration-300",
                                         isActive
-                                            ? "text-white"
-                                            : "text-muted-foreground hover:text-foreground",
+                                            ? "text-bd-red shadow-sm"
+                                            : "text-white/70 hover:text-bd-red hover:bg-white/10",
                                     )}
                                 >
                                     {isActive && (
                                         <motion.div
                                             layoutId="nav-pill"
-                                            className="absolute inset-0 bg-bd-green shadow-md rounded-xl"
+                                            className="absolute inset-0 bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
                                             initial={false}
                                             transition={{
                                                 type: "spring",

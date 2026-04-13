@@ -18,7 +18,6 @@ export default function Home() {
 
     const handleSpinResult = (fact: Fact) => {
         setSelectedFact(fact);
-        // Slight delay before opening modal for "wow" effect
         // Reset before new discovery
         setIsModalOpen(false);
 
@@ -30,30 +29,27 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen bg-earth-soft overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-b from-bd-green-soft via-white to-bd-red-soft overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">
-                <img
-                    src="https://images.unsplash.com/photo-1629853965565-3855ff4314cb?w=1600"
-                    alt="Bangladesh Landscape Texture"
-                    className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-multiply"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-earth-soft/80 via-earth-soft/95 to-earth-soft" />
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-bd-green/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-bd-red/10 rounded-full blur-[100px]" />
+                {/* Subtle Bangladesh flag-inspired background pattern */}
+                <div className="absolute inset-0 bg-gradient-to-b from-bd-green/[0.03] via-transparent to-bd-red/[0.03]" />
+                <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-bd-green/8 rounded-full blur-[120px]" />
+                <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-bd-red/8 rounded-full blur-[120px]" />
+                {/* Central red circle reminiscent of BD flag */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bd-red/[0.04] rounded-full blur-[150px]" />
             </div>
 
             <div className="container mx-auto px-4 relative pt-8 pb-16">
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto text-center mb-12">
+                    {/* Decorative BD flag colors line */}
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-bd-green/10 text-bd-green rounded-full text-xs font-black uppercase tracking-widest mb-6"
-                    >
-                        <Sparkles className="h-4 w-4 animate-glow" />
-                        Discover the Heritage
-                    </motion.div>
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.8 }}
+                        className="h-1 w-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green"
+                    />
 
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -114,15 +110,17 @@ export default function Home() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.8 + i * 0.1 }}
-                            className="flex flex-col items-center text-center p-8 glass rounded-3xl group hover:border-bd-green/30 hover:shadow-premium transition-all hover:-translate-y-2 cursor-default"
+                            className={`flex flex-col items-center text-center p-8 bg-white/80 backdrop-blur-xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 rounded-3xl group hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] transition-all hover:-translate-y-2 cursor-pointer`}
                         >
-                            <div className="w-12 h-12 bg-bd-green/5 text-bd-green rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <feature.icon size={24} />
+                            <div
+                                className={`w-14 h-14 bg-bd-green/10 text-bd-green group-hover:bg-bd-red/10 group-hover:text-bd-red rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-all`}
+                            >
+                                <feature.icon size={26} />
                             </div>
-                            <h3 className="font-black text-lg mb-2">
+                            <h3 className="font-black text-lg mb-2 group-hover:text-bd-red transition-colors">
                                 {feature.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
+                            <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-bd-red/80 transition-colors">
                                 {feature.desc}
                             </p>
                         </motion.div>
@@ -130,14 +128,23 @@ export default function Home() {
                 </div>
 
                 {/* Gallery CTA */}
-                <div className="mt-12 text-center">
+                <div className="mt-12 text-center flex items-center justify-center gap-4">
                     <Link href="/heritage">
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-bd-green text-white rounded-xl font-black uppercase tracking-widest text-sm shadow-premium hover:shadow-bd-green/30 transition-all cursor-pointer"
+                            className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-bd-green hover:bg-white border-2 border-transparent hover:border-bd-red text-white hover:text-bd-red rounded-xl font-black uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(0,106,78,0.3)] hover:shadow-[0_15px_40px_rgba(244,42,65,0.4)] transition-all cursor-pointer"
                         >
-                            Explore Full Gallery
+                            🏛️ Explore Heritage
+                        </motion.div>
+                    </Link>
+                    <Link href="/foods">
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-bd-red hover:bg-white border-2 border-transparent hover:border-bd-red text-white hover:text-bd-red rounded-xl font-black uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(244,42,65,0.3)] hover:shadow-[0_15px_40px_rgba(244,42,65,0.4)] transition-all cursor-pointer"
+                        >
+                            🍛 Bengali Kitchen
                         </motion.div>
                     </Link>
                 </div>

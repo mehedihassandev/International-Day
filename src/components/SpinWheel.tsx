@@ -67,9 +67,9 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
     };
 
     return (
-        <div className="relative flex flex-col items-center justify-center py-16">
+        <div className="relative flex flex-col items-center justify-center py-12">
             {/* Decorative Bezel */}
-            <div className="relative p-6 rounded-full bg-gray-100 shadow-inner">
+            <div className="relative p-3 rounded-full bg-bd-green/5 shadow-inner border border-bd-green/10">
                 {/* Needle / Pointer */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6 z-30">
                     <motion.div
@@ -94,7 +94,7 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                 {/* The Wheel */}
                 <motion.div
                     animate={controls}
-                    className="relative w-[340px] h-[340px] md:w-[520px] md:h-[520px] rounded-full overflow-hidden border-[12px] border-bd-green/20 shadow-[inset_0_0_60px_rgba(0,0,0,0.2)] bg-neutral-900"
+                    className="relative w-[380px] h-[380px] md:w-[580px] md:h-[580px] rounded-full overflow-hidden border-[6px] border-bd-green/30 shadow-[inset_0_0_60px_rgba(0,0,0,0.2),0_0_40px_rgba(0,106,78,0.15)] bg-neutral-900"
                 >
                     <svg
                         viewBox="0 0 100 100"
@@ -162,17 +162,17 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                                     />
                                     {/* Text label with rotation */}
                                     <text
-                                        x="78"
-                                        y="51"
+                                        x="95"
+                                        y="50.8"
                                         fill="white"
-                                        fontSize="2.8"
+                                        fontSize="2.6"
                                         fontWeight="800"
                                         transform={`rotate(${startAngle + angle / 2}, 50, 50)`}
-                                        textAnchor="middle"
-                                        className="select-none pointer-events-none drop-shadow-sm uppercase tracking-tighter"
+                                        textAnchor="end"
+                                        className="select-none pointer-events-none drop-shadow-md uppercase tracking-wider"
                                     >
-                                        {fact.title.length > 14
-                                            ? fact.title.substring(0, 11) +
+                                        {fact.title.length > 15
+                                            ? fact.title.substring(0, 13) +
                                               "..."
                                             : fact.title}
                                     </text>
@@ -184,10 +184,10 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                     {/* Glass Hub (Centerpiece) */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         {/* Outer Hub Ring */}
-                        <div className="w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-white/30 shadow-2xl z-20">
+                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-white/30 shadow-2xl z-20">
                             {/* Inner Gold Hub */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-bd-gold via-yellow-300 to-bd-gold/80 shadow-[0_0_20px_rgba(255,215,0,0.5)] flex items-center justify-center border-2 border-white/50 animate-glow">
-                                <div className="w-4 h-4 md:w-6 md:h-6 bg-white rounded-full opacity-40 blur-sm" />
+                            <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-bd-gold via-yellow-300 to-bd-gold/80 shadow-[0_0_20px_rgba(255,215,0,0.5)] flex items-center justify-center border-2 border-white/50 animate-glow">
+                                <div className="w-5 h-5 md:w-8 md:h-8 bg-white rounded-full opacity-40 blur-sm" />
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                     onClick={spin}
                     disabled={isSpinning || disabled}
                     className={cn(
-                        "relative px-16 py-6 rounded-2xl font-black text-2xl tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden transform-gpu",
+                        "relative px-12 py-4 rounded-2xl font-black text-xl tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden transform-gpu",
                         isSpinning || disabled
                             ? "bg-neutral-200 text-neutral-400 scale-95 border-neutral-300"
                             : "bg-bd-red text-white hover:scale-105 active:scale-95 shadow-[0_15px_40px_rgba(244,42,65,0.4)] border-b-8 border-[#b91c1c] hover:border-b-[12px] hover:-translate-y-1",
