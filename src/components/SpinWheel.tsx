@@ -162,8 +162,8 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                                     />
                                     {/* Text label with rotation */}
                                     <text
-                                        x="75"
-                                        y="50"
+                                        x="78"
+                                        y="51"
                                         fill="white"
                                         fontSize="2.8"
                                         fontWeight="800"
@@ -237,7 +237,7 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                 className="mt-8 text-muted-foreground font-medium flex items-center gap-2"
             >
                 <span className="w-2 h-2 rounded-full bg-bd-green animate-pulse" />
-                All 12 national treasures are on the wheel
+                All {facts.length} national treasures are on the wheel
             </motion.p>
         </div>
     );
