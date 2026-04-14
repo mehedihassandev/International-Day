@@ -1,21 +1,25 @@
 name: Update Contributors in README
 
 on:
-  push:
-    branches:
-      - main
-      - master
-  schedule:
-    - cron: "0 0 * * 0" # Runs every Sunday at midnight
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * 0" # Runs every Sunday at midnight
 
 jobs:
-  update-contributors:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    update-contributors:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Update Contributors Table
-        uses: akhilmhdh/contributors-readme-action@v2.3.6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Update Contributors Table
+              uses: akhilmhdh/contributors-readme-action@v2.3.6
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
