@@ -826,4 +826,45 @@ Jatra is more than just entertainment—it is a living tradition of storytelling
         imagePrompt:
             "Jatra folk theatre performance rural Bangladesh open air stage.",
     },
+    {
+        id: "shataranji",
+        title: "Shataranji (Hand-woven Crafts)",
+        description: "A traditional hand-woven textile and GI product of Rangpur.",
+        details: `Shataranji (শতরঞ্জি) is a vibrant and deeply traditional hand-woven textile that originated in the Rangpur region of northern Bangladesh. It is celebrated for its remarkable durability, bold geometric patterns, and rich cultural history.
+
+Historically patronized by both local elites and British officials dating back to the 1830s, this craft was once a symbol of aristocracy before evolving into a globally exported handicraft.
+
+🪡 The Art of Weaving
+
+Shataranji is created entirely by hand without the use of modern machinery. Skilled artisans, often working in family units, use ancestral techniques on traditional bamboo frames and wooden looms. 
+
+Key characteristics include:
+
+🧶 Natural Materials – Woven using cotton yarn, jute, and sometimes wool.
+🎨 Colorful Geometry – Known for striking, symmetrical geometric patterns that are often identical on both sides of the fabric.
+✨ Unique Craftsmanship – Because the designs are manually calculated and created without written templates, every piece is uniquely woven.
+
+🛍️ Modern Revival
+
+Traditionally used as large floor carpets and bedspreads, Shataranji has seen a massive revival and diversification. Today, you can find this beautiful textile transformed into:
+
+👜 Fashionable bags and ladies' purses
+🍽️ Table mats and dining accessories
+🖼️ Decorative wall hangings
+
+🏅 Geographical Indication (GI)
+
+In recognition of its unique regional heritage and superior craftsmanship, "Rangpur Shataranji" was officially registered as a Geographical Indication (GI) product of Bangladesh in 2021.
+
+❤️ Why it matters
+
+Shataranji is a testament to the resilience and artistic brilliance of rural Bangladeshi weavers, particularly empowering women artisans in the Rangpur region. It beautifully threads together a rich past with versatile modern utility.`,
+        category: "GI Product",
+        image: "/images/shataranji-rug.png",
+        images: [
+            "/images/shataranji-rug.png",
+            "/images/shataranji-products.png"
+        ],
+        imagePrompt: "Shataranji colorful hand woven carpet Rangpur geometric patterns.",
+    },
 ];

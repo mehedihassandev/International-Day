@@ -13,7 +13,7 @@ interface SpinWheelProps {
 
 /**
  * Premium Spin Wheel component with enhanced aesthetics.
- * Features all 12 segments, metallic bezel with LED accents, and a luxury SPIN button.
+ * Dynamically scales to support any number of facts with optimized text and colors.
  */
 export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
     const [isSpinning, setIsSpinning] = useState(false);
@@ -153,26 +153,28 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                                     <path
                                         d={`M 50 50 L ${x1} ${y1} A 50 50 0 0 1 ${x2} ${y2} Z`}
                                         fill={
-                                            i % 2 === 0
+                                            segmentCount % 2 !== 0 && i === segmentCount - 1
+                                                ? "url(#segment-red)" // Use red for the odd last one or a special color
+                                                : i % 2 === 0
                                                 ? "url(#segment-green)"
                                                 : "url(#segment-red)"
                                         }
                                         className="stroke-white/20"
-                                        strokeWidth="0.3"
+                                        strokeWidth={segmentCount > 20 ? "0.1" : "0.3"}
                                     />
                                     {/* Text label with rotation */}
                                     <text
                                         x="95"
                                         y="50.8"
                                         fill="white"
-                                        fontSize="2.6"
+                                        fontSize={segmentCount > 20 ? "2.0" : segmentCount > 15 ? "2.4" : "2.8"}
                                         fontWeight="800"
                                         transform={`rotate(${startAngle + angle / 2}, 50, 50)`}
                                         textAnchor="end"
                                         className="select-none pointer-events-none drop-shadow-md uppercase tracking-wider"
                                     >
-                                        {fact.title.length > 15
-                                            ? fact.title.substring(0, 13) +
+                                        {fact.title.length > (segmentCount > 20 ? 12 : 15)
+                                            ? fact.title.substring(0, segmentCount > 20 ? 10 : 13) +
                                               "..."
                                             : fact.title}
                                     </text>
