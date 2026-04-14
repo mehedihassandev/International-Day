@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Navigation } from '@/components/Navigation';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://international-day-three.vercel.app'),
   title: {
     default: 'Bangladesh Cultural Showcase | International Day',
     template: '%s | Bangladesh Cultural Showcase',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://github.com/mehedihassandev/International-Day',
+    url: 'https://international-day-three.vercel.app',
     title: 'Bangladesh Cultural Showcase',
     description: 'Explore the heart of Bangladesh through interactive culture guides, historical milestones, and traditional recipes.',
     siteName: 'Bangladesh Cultural Showcase',
