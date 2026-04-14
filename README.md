@@ -93,19 +93,6 @@ Contributions, issues, and feature requests are always welcome! Since this is an
 A huge thank you to everyone who has helped build and maintain this project!
 
 <!-- readme: contributors -start -->
-<table align="center">
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="150px">
-        <a href="https://github.com/mehedihassandev">
-          <img src="https://github.com/mehedihassandev.png?size=100" width="100px;" alt="Mehedi Hassan" style="border-radius: 50%;" />
-          <br />
-          <sub><b>Mehedi Hassan</b></sub>
-        </a><br/>
-      </td>
-    </tr>
-  </tbody>
-</table>
 <!-- readme: contributors -end -->
 
 ---
