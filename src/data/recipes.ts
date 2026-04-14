@@ -38,10 +38,13 @@ export const recipes: Recipe[] = [
             "Shape into small flat patties (bite-sized is best for events).",
             "Shallow fry on medium heat until golden brown on both sides.",
         ],
-        image: "https://ajinomotobangladesh.com/wp-content/uploads/2023/01/1-2-scaled.jpg",
+        image: "https://foodfoodonlyfood.wordpress.com/wp-content/uploads/2019/04/1-13.jpg",
         images: [
-            "https://ajinomotobangladesh.com/wp-content/uploads/2023/01/1-2-scaled.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lula_kebab_2.jpg",
+            "https://foodfoodonlyfood.wordpress.com/wp-content/uploads/2019/04/1-13.jpg",
+            "https://i.ytimg.com/vi/4neXNNPyo4M/maxresdefault.jpg",
+            "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/03/shami-kabab.jpg",
+            "https://i.ytimg.com/vi/MGS-y2zXaPY/maxresdefault.jpg",
+            "https://i.ytimg.com/vi/ETI0GL_7EaU/maxresdefault.jpg"
         ],
         imagePrompt:
             "Crispy golden brown Chicken Tikiya patties on a white plate, garnished with fresh cilantro and onion rings, served with green chutney.",
@@ -75,6 +78,8 @@ export const recipes: Recipe[] = [
         images: [
             "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",
             "https://upload.wikimedia.org/wikipedia/commons/d/df/4th_October_2012_Shami_Kebab.jpg",
+            "https://i.ytimg.com/vi/Zsw6nBkAqOc/maxresdefault.jpg",
+            "https://i.ytimg.com/vi/a1vzp8dtGIA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDKoL2RYbBWpNGUxIpYcTGbxS1VNQ"
         ],
         imagePrompt:
             "Deliciously thick Beef Tikiya patties, dark brown crust, moist inside, served with fragrant Polao rice and salad.",
@@ -107,6 +112,9 @@ export const recipes: Recipe[] = [
         images: [
             "https://static.wixstatic.com/media/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/d/d1/Aloo_Tikki_served_with_chutneys.jpg",
+            "https://i.ytimg.com/vi/PiWnO0fpUWQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC6IKwMdEkSiNOn6j1_MbgwPaPo7g",
+            "https://static.wixstatic.com/media/020ff8_acc706a4638e4d6dbe7ab9aa49e77ccb~mv2.png/v1/fill/w_568,h_568,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/020ff8_acc706a4638e4d6dbe7ab9aa49e77ccb~mv2.png",
+            "https://i.ytimg.com/vi/IAtaOoh3KLs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB4lAVgzOg3wtglWJpGtMWriqsu6g"
         ],
         imagePrompt:
             "Street-style Alur Chop (potato fritters), crispy yellow-orange batter, served in a recycled paper bowl, very appetizing.",
@@ -133,10 +141,12 @@ export const recipes: Recipe[] = [
             "Pour a thin layer of batter like a pancake.",
             "Cook both sides until slightly crispy.",
         ],
-        image: "https://withaspin.com/wp-content/uploads/2013/03/Chapri-1.jpg",
+        image: "https://i.ytimg.com/vi/UrW1pjsD91o/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCdQXshIkwgmDrjn4UeqliUtg9kyQ",
         images: [
+            "https://i.ytimg.com/vi/UrW1pjsD91o/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCdQXshIkwgmDrjn4UeqliUtg9kyQ",
             "https://withaspin.com/wp-content/uploads/2013/03/Chapri-1.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/f/fe/2_Chapati_warm_and_ready_to_be_eaten.jpg",
+            "https://i.ytimg.com/vi/D4dO0Xh5qPk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC0KBsLI4A0uUttXMhGG4v4iDIL8A",
+            "https://www.shutterstock.com/image-photo/bengali-traditional-pitha-chapri-chapti-260nw-2368281327.jpg",
         ],
         imagePrompt:
             "Traditional Chapti pancake on a cast iron pan, thin and crispy edges, visible bits of green chili and coriander, rustic kitchen setting.",

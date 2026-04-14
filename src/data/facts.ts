@@ -34,7 +34,10 @@ The Language Movement is deeply emotional for every Bengali. It symbolizes the u
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrAi2cC5SVf5Q2TwAxFSqk8vAOSREvVs7uw&s",
         images: [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrAi2cC5SVf5Q2TwAxFSqk8vAOSREvVs7uw&s",
-            "https://upload.wikimedia.org/wikipedia/commons/4/4b/Shaheed_Minar_2013-02-21.jpg",
+            "https://socialchange.org.np/wp-content/uploads/2021/11/womens-protest-march-for-language-bangladesh-1952.jpg",
+            "https://www.bssnews.net/assets/news_photos/2024/01/31/image-171077-1706705804.jpg",
+            "https://bangladeshonrecord.com/Image/rare-images-of-the-language-movement/15_ekushey/",
+            "https://en.samakal.com/uploads/2016/02/photos/sd_3466.jpg"
         ],
         imagePrompt:
             "Shaheed Minar Dhaka with flowers, people paying tribute on 21 February, emotional atmosphere.",
@@ -66,7 +69,10 @@ The Liberation War is the proudest chapter in the history of Bangladesh. Remembe
         image: "https://www.liberationwarmuseumbd.org/public/images/390695.jpg",
         images: [
             "https://www.liberationwarmuseumbd.org/public/images/390695.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/0/07/National_Martyrs%27_Monument_1.jpg",
+            "https://www.shutterstock.com/image-photo/dhaka-bangladesh-february-9th2024photographs-freedom-600nw-2425646685.jpg",
+            "https://dscdn.daily-sun.com/english/uploads/news_photos/2019/12/16/Daily-sun-2019-12-16-39.jpg",
+            "https://www.tbsnews.net/sites/default/files/styles/big_3/public/images/2021/10/19/rim1971024w00023-17-bangladesh.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQokaXNPwda3lpbu_5IjD0BA2-H-5BJPhkXcA&s",
         ],
         imagePrompt:
             "Victory Day Bangladesh, National Martyrs Memorial Savar, flags and crowd.",
@@ -99,8 +105,11 @@ It is the heart of Bengali secular celebrations, representing joy, inclusivity, 
         category: "Culture",
         image: "https://kitchengatherings.com/wp-content/uploads/tomato-bhorta_pohelaboishakh-parade.jpg",
         images: [
-            "https://kitchengatherings.com/wp-content/uploads/tomato-bhorta_pohelaboishakh-parade.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Bangladeshi_children_with_Pohela_Boishakh_placard_at_Pohela_Boishakh_celebration_%2804%29.jpg/1280px-Bangladeshi_children_with_Pohela_Boishakh_placard_at_Pohela_Boishakh_celebration_%2804%29.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/9/9d/Mangal_Shobhajatra_in_Dhaka.jpg",
+            "https://www.shutterstock.com/image-photo/london-uk-63019-people-taking-600nw-1438261067.jpg",
+            "https://i.ytimg.com/vi/zwYBq14XzZw/maxresdefault.jpg",
+            "https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/media/2025/04/14/dd770c9c7e8a306ce96bb835fc7e1439-af4389fa5faf0ce4ede3690adaf7f38a.jpeg?jadewits_media_id=42708"
         ],
         imagePrompt:
             "Pohela Boishakh celebration, red white dress, colorful rally.",
@@ -135,6 +144,8 @@ Mongol Shobhajatra is more than a festival—it is a symbol of cultural identity
             "https://cdn.bdnews24.com/bdnews24/media/bdnews24-english/import/media/2020/04/14/mongol-shovajatra-1418-140411-02.jpg",
             "https://www.thedailystar.net/sites/default/files/styles/big_1/public/images/2025/03/24/received_1151567285675566.jpg?h=8af371aa",
             "https://cdn.jagonews24.com/media/imgAllNew/BG/2016October/mongol-shovajatra-large2016113019130620170227205742.jpg",
+            "https://www.tbsnews.net/sites/default/files/styles/infograph/public/images/2024/04/14/mangal_shobhajatra_pahela_baishakh_2.jpeg",
+            "https://ecdn.dhakatribune.net/contents/cache/images/1200x630x1xxxxx1x694528/uploads/dten/2022/04/14/2-37.jpeg?watermark=media%2F2023%2F05%2F28%2F1280px-Dhaka_Tribune_Logo.svg-1-a9e61c86dded62d74300fef48fee558f.png"
         ],
         imagePrompt: "Mangal Shobhajatra masks, colorful parade Bangladesh.",
     },
@@ -179,6 +190,7 @@ Baul culture represents the heart of Bengali philosophy—simple living, deep th
             "https://upload.wikimedia.org/wikipedia/commons/7/75/Ektara_player.jpg",
             "https://i1.sndcdn.com/artworks-000125092260-0q3d46-t500x500.jpg",
             "https://www.lalongeeti.com/wp-content/uploads/2014/08/Fakir-Lalon-Shah.jpg",
+            "https://i0.wp.com/www.lalongeeti.com/wp-content/uploads/2014/08/bauls_lalon-640x426.jpg?fit=640%2C426&ssl=1"
         ],
         imagePrompt: "Baul singer with ektara rural Bangladesh.",
     },
@@ -211,6 +223,8 @@ This unmatched warmth defines the soul of Bangladesh. It shows how the culture v
             "https://i.ytimg.com/vi/oU7xxhodx5Y/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD5N9p5FPXqc00cvNK3FwKBtbBcZg",
             "https://upload.wikimedia.org/wikipedia/commons/1/15/Bangladeshi_villagers_and_foreigner.jpg",
             "https://medicalstudybd.com/wp-content/uploads/2023/10/The-Foreign-Student-life-in-Bangladesh-1024x683.jpg",
+            "https://i.ytimg.com/vi/pCvU9r2L9Ew/maxresdefault.jpg",
+            "https://i.ytimg.com/vi/4FQK6OQVbZc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBHXvH69RN7GbiO_l06W_945opV1Q"
         ],
         imagePrompt: "Family serving guests traditional food Bangladesh.",
     },
@@ -243,6 +257,8 @@ The Pitha Festival is more than just food—it is a celebration of the harvest, 
             "https://www.xinhuanet.com/english/2020-01/07/138684412_15783642301331n.jpg",
             "https://www.globaltimes.cn/Portals/0/attachment/2021/2021-03-01/af423214-321f-40b1-8b2f-6d26b198ae53.jpeg",
             "https://assets.wpdeveloper.com/2023/01/FB_IMG_1673868252107.jpg",
+            "https://assets.wpdeveloper.com/2023/01/FB_IMG_1673859823327.jpg",
+            "https://www.skylarksoft.com/wp-content/uploads/2024/02/Pitha-Utshob-2024-Skylark-Soft-Limited-Cultural-Engagement-1024x576.jpg"
         ],
         imagePrompt: "Traditional pitha making Bangladesh winter.",
     },
@@ -296,7 +312,8 @@ For Bangladesh, Jamdani is a national treasure, carrying centuries of tradition 
             "https://pinkloom.com/cdn/shop/articles/4_77dca814-1376-4d37-851e-13b08bb6650c.jpg?v=1679221348&width=1024",
             "https://mavuris.com/cdn/shop/products/1000009831_2.jpg?v=1756221050&width=533",
             "https://ecdn.dhakatribune.net/contents/cache/images/1200x630x1xxxxx1x694528/uploads/dten/2023/04/16/jamdani-dt.jpeg?watermark=media%2F2023%2F05%2F28%2F1280px-Dhaka_Tribune_Logo.svg-1-a9e61c86dded62d74300fef48fee558f.png",
-            "https://upload.wikimedia.org/wikipedia/commons/6/67/%E0%A6%9C%E0%A6%BE%E0%A6%AE%E0%A6%A6%E0%A6%BE%E0%A6%A8%E0%A7%80_%E0%A6%B6%E0%A6%BE%E0%A6%A1%E0%A6%BC%E0%A7%80.jpg",
+            "https://c.files.bbci.co.uk/60E4/production/_108640842_gettyimages-963578508.jpg",
+            "https://www.fabfunda.com/product-img/thumb/dark-blue-designer-maslin-jamd-1712571033.jpeg"
         ],
         imagePrompt: "Jamdani saree weaving loom intricate design.",
     },
@@ -352,6 +369,7 @@ It beautifully represents Bangladesh’s identity as a land of artistry, resilie
             "https://shopnaya.com/cdn/shop/products/image_1b6d41f8-afef-4e64-8abf-d601faf4cb1d_1280x.heic?v=1682101526",
             "https://static.wixstatic.com/media/4f80ea_b2f6a20f3aad47c1bf704e0d61739b1e~mv2.jpeg/v1/fill/w_1000,h_796,al_c,q_85,usm_0.66_1.00_0.01/4f80ea_b2f6a20f3aad47c1bf704e0d61739b1e~mv2.jpeg",
             "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F17b1ab4a-863e-41f8-86d2-4327eda058aa_1880x1253.jpeg",
+            "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2023/02/17/p1_friday_feature_20230119_rajibdhar_0980.jpg"
         ],
         imagePrompt: "Fine muslin fabric weaving close texture.",
     },
@@ -407,8 +425,10 @@ Nakshi Kantha is more than a quilt—it is a piece of history, emotion, and iden
         image: "https://www.aramcoworld.com/-/jssmedia/aramco-world/articles/2025/ma25/quilting/a_toc_nakshikantha_reinders_021-2__web.jpg?sc_lang=en&cx=0.37&cy=0.56",
         images: [
             "https://www.aramcoworld.com/-/jssmedia/aramco-world/articles/2025/ma25/quilting/a_toc_nakshikantha_reinders_021-2__web.jpg?sc_lang=en&cx=0.37&cy=0.56",
+            "https://www.aramcoworld.com/-/jssmedia/aramco-world/articles/2025/ma25/quilting/nakshikantha_reinders_045-1-__web.jpg?sc_lang=en&cx=0.5&cy=0.5",
             "https://upload.wikimedia.org/wikipedia/commons/2/29/Nakshi_kantha1.JPG",
             "https://textiletoday.com.bd/storage/uploads/2018/12/Nakshi-kantha-ff.jpg",
+            "https://i.ytimg.com/vi/-gQNOmvnmGk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBORq_o_wn-KWqQa4KB80-D6WKDyA"
         ],
         imagePrompt: "Nakshi Kantha embroidery colorful patterns.",
     },
@@ -466,6 +486,9 @@ Rickshaw art represents the colorful soul of Bangladesh. It’s a reminder that 
         images: [
             "https://www.thedailystar.net/sites/default/files/styles/big_1/public/2026-01/Illustrations.jpg?h=acd346f0",
             "https://upload.wikimedia.org/wikipedia/commons/3/38/Rickshaw_back_decoration.jpg",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/images/2023/12/07/rickshaw_1.jpg",
+            "https://static.dw.com/image/67656589_605.jpg",
+            "https://www.digitaljournal.com/wp-content/uploads/2023/12/425d1b99116944e7fdefe8747018dd76b1f7664a.jpg"
         ],
         imagePrompt: "Colorful rickshaw art Bangladesh street.",
     },
@@ -522,6 +545,8 @@ The rivers of Bangladesh are more than geography—they are the heart of the cou
             "https://cdn.britannica.com/69/6269-050-7EE9410A/Boat-traffic-Buriganga-River-Bangladesh-Dhaka.jpg",
             "https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/67f5c053601d97001d1924c6.jpg",
             "https://platform.vox.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/18968868/bangladesh_river_GettyImages_1159478392.jpg?quality=90&strip=all&crop=0.036307053941911%2C0%2C99.927385892116%2C100&w=2400",
+            "https://static.bonikbarta.com/original_images/Jamuna.jpg",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/gallery-images/2024/05/10/bangabandhu-railway-bridge.jpg"    
         ],
         imagePrompt: "River delta Bangladesh aerial boats water.",
     },
@@ -590,7 +615,9 @@ The Royal Bengal Tiger represents the wild spirit of Bangladesh, making this reg
         images: [
             "https://i.ytimg.com/vi/3EBdZEXeNnA/maxresdefault.jpg",
             "https://www.thestatesman.com/wp-content/uploads/2021/06/QT-O-4.jpg",
-            "https://images.unsplash.com/photo-1615824996195-f780bba7cfab?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://res.cloudinary.com/roundglass/image/upload/v1584341904/roundglass/sustain/Sundarbans_Dhritiman-Mukherjee3-copy_iwjpgb.jpg",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/feature/images/sundarban_wildlife.jpg",
+            "https://res.cloudinary.com/roundglass/image/upload/v1599223286/roundglass/sustain/sundarbans-honey-collectors-returning-dhritiman-mukherjee_t6bn1a.jpg"      
         ],
         imagePrompt: "Sundarbans mangrove forest tiger habitat.",
     },
@@ -626,6 +653,8 @@ Cox's Bazar is the crown jewel of Bangladesh tourism. It is a place of peace, na
             "https://media-cdn.tripadvisor.com/media/photo-c/1280x250/10/e2/f8/43/longest-sea-beach-in.jpg",
             "https://images.trvl-media.com/place/956/6a04204d-7cda-4114-940a-60e1017eac42.jpg",
             "https://media.licdn.com/dms/image/v2/D4D12AQFEiDqmK8IE9Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1655648195177?e=2147483647&v=beta&t=14XPHr05V2PHZoIc_nsAeWUzz5weNLg2g6BRNJSKRSo",
+            "https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/685f5c643b0cfa001f1b5757.png",
+            "https://www.thedailystar.net/sites/default/files/images/2022/08/08/img_2021.jpg"
         ],
         imagePrompt: "Coxs Bazar beach sunset waves.",
     },
@@ -658,6 +687,8 @@ Saint Martin's is a fragile and beautiful ecosystem that showcases the pristine 
             "https://www.travelmate.com.bd/wp-content/uploads/2019/07/St.-Martins-Island-1024x768.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/d/db/Saint_Martins_Island_with_boats_in_foreground.jpg",
             "https://www.thedailystar.net/sites/default/files/images/2022/09/21/saief_al_emon.jpg",
+            "https://www.orfonline.org/public/uploads/posts/image/1724231340_st-Martin-Island.jpg",
+            "https://coxsbazarlife.com/wp-content/uploads/2024/11/St-Martin.jpeg"
         ],
         imagePrompt: "Saint Martins island clear water coconut trees.",
     },
@@ -715,6 +746,8 @@ Haor represents the beauty and adaptability of nature and people. It shows how h
         image: "https://www.tbsnews.net/sites/default/files/styles/infograph/public/images/2023/07/05/tanguar_haor_river_wetland_1.jpg",
         images: [
             "https://www.tbsnews.net/sites/default/files/styles/infograph/public/images/2023/07/05/tanguar_haor_river_wetland_1.jpg",
+            "https://takeaboat.com/uploads/0000/6/2024/10/21/jol-bihongo-25.jpeg",
+            "https://www.tbsnews.net/sites/default/files/styles/big_3/public/images/2021/08/25/bojra_photo_noor_a_alam_9.jpg",
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/50/e2/9b/tanguar-haor-floating.jpg?w=1200&h=-1&s=1",
             "https://freshwaterbiodiversity.org.bd/wp-content/uploads/2024/08/tanguar-haor-dreamlike-aquatic-serenity.jpeg",
         ],
@@ -749,6 +782,8 @@ Recognized as a Geographical Indication (GI) product of Bangladesh, Ilish repres
         images: [
             "https://seafoodnetworkbd.com/wp-content/uploads/2023/10/Hilsa_fish_ilish_fish_bangladesh.jpg",
             "https://images.unsplash.com/photo-1668532697413-71a8171089d1?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://damgoodfish.com/cdn/shop/files/hilsa_big_bengali_cut_with_head_cut_1.webp?v=1757492620",
+            "https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/dten/2018/07/hilsa-1529923772980-1532373641590.jpg"
         ],
         imagePrompt: "Ilish fish silver traditional hilsha.",
     },
@@ -774,10 +809,13 @@ Sakrain is more than just flying kites—it reflects the community spirit and vi
 
 It is a festival full of energy, creativity, and friendly competition, where the rooftops become stages and the sky becomes a playground.`,
         category: "Culture",
-        image: "https://kalerkantho.com/assets/news_images/2022/01/14/sakrain.jpg",
+        image: "https://www.bssnews.net/assets/news_photos/2026/01/14/image-351227-1768453112.jpg",
         images: [
-            "https://kalerkantho.com/assets/news_images/2022/01/14/sakrain.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/4/4b/Shakrain_Festival.jpg",
+            "https://www.bssnews.net/assets/news_photos/2026/01/14/image-351227-1768453112.jpg",
+            "https://thefe-bd.sgp1.cdn.digitaloceanspaces.com/posts/78372/sakrain.jpg",
+            "https://english.news.cn/asiapacific/20260115/3af12c3f026743c98d6b9852c22a6f0c/202601153af12c3f026743c98d6b9852c22a6f0c_20260115f27be50cb0ba4ccc9c67fa5c79703408.jpg",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/2026-01/colourful-kites.jpg?h=174dcbce",
+            "https://preview.redd.it/sakrain-festival-dhaka-bangladesh-2022-taslim-ahmed-murad-v0-95n64l794ub81.jpg?width=1080&crop=smart&auto=webp&s=a0c4ee29c039eba5e509b1aaf65f5d1c7698e7dd"
         ],
         imagePrompt:
             "Sakrain kite festival Old Dhaka fireworks fire spitting colorful kites.",
@@ -819,9 +857,12 @@ Jatra plays a vital role in preserving Bengali language, storytelling, and cultu
 
 Jatra is more than just entertainment—it is a living tradition of storytelling and community bonding. It reflects the emotions, struggles, and dreams of ordinary people, keeping cultural heritage alive across generations.`,
         category: "Culture",
-        image: "https://upload.wikimedia.org/wikipedia/commons/d/df/Jatra_Performance_in_Bangladesh.jpg",
+        image: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2021/12/14/selected_jatra_7.jpg",
         images: [
-            "https://upload.wikimedia.org/wikipedia/commons/d/df/Jatra_Performance_in_Bangladesh.jpg",
+            "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2021/12/14/selected_jatra_7.jpg",
+            "https://www.tbsnews.net/sites/default/files/styles/big_2/public/images/2021/12/14/jatra_pala_stage_pergormance_drama_6.jpg",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/media/api_images/2024/12/26/Jatra%20festival%20revives%20a%20fading%20tradition%20in%20Khulna_2879.jpg",
+            "https://www.tbsnews.net/sites/default/files/styles/big_2/public/images/2021/12/14/jatra_pala_stage_pergormance_drama_1.jpg",
         ],
         imagePrompt:
             "Jatra folk theatre performance rural Bangladesh open air stage.",
@@ -863,7 +904,9 @@ Shataranji is a testament to the resilience and artistic brilliance of rural Ban
         image: "/images/shataranji-rug.png",
         images: [
             "/images/shataranji-rug.png",
-            "/images/shataranji-products.png"
+            "/images/shataranji-products.png",
+            "https://www.thedailystar.net/sites/default/files/styles/big_1/public/news/images/2021/02/23/rangpur-3.jpg?h=85b6ea67",
+            "https://english.news.cn/20230228/9dc800c46e36426bac1189de07cd55bb/202302289dc800c46e36426bac1189de07cd55bb_65c67ce9-d00c-4228-802b-19a0be892ef7.jpg"
         ],
         imagePrompt: "Shataranji colorful hand woven carpet Rangpur geometric patterns.",
     },
