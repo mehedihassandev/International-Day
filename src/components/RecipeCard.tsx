@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Utensils, Clock, Users, Maximize2 } from "lucide-react";
 import { Recipe } from "@/data/recipes";
@@ -31,10 +32,12 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             {/* Thumbnail Image */}
             {recipe.image && (
                 <div className="w-full h-52 md:h-60 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
-                    <img
+                    <Image
                         src={recipe.image}
                         alt={recipe.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 30vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-2xl text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">

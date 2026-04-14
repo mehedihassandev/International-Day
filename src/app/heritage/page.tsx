@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { facts, Fact } from "@/data/facts";
 import { FactModal } from "@/components/FactModal";
@@ -57,10 +58,12 @@ export default function HeritagePage() {
                             {/* Image Section */}
                             <div className="relative w-full h-48 overflow-hidden bg-earth-light/20">
                                 {fact.image ? (
-                                    <img
+                                    <Image
                                         src={fact.image}
                                         alt={fact.title}
-                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 30vw"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                 ) : (
                                     <div className="absolute inset-0 bd-gradient opacity-10" />

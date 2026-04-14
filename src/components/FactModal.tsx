@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MapPin, Share2, Heart } from "lucide-react";
+import { X, Maximize2 } from "lucide-react";
 import { Fact } from "@/data/facts";
 
 interface FactModalProps {
@@ -13,10 +14,28 @@ interface FactModalProps {
 
 /**
  * Full-screen Fact Modal for revealing spin results.
- * Features Bangladesh green/red theme, immersive layout, and smooth animations.
+ * Features multiple images, fullscreen image viewer, Bangladesh green/red theme, immersive layout, and smooth animations.
  */
 export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            setSelectedImageIndex(0);
+            setIsFullscreen(false);
+        }
+    }, [isOpen, fact]);
+
     if (!fact) return null;
+
+    const images =
+        fact.images && fact.images.length > 0
+            ? fact.images
+            : fact.image
+              ? [fact.image]
+              : [];
+    const currentImage = images[selectedImageIndex];
 
     return (
         <AnimatePresence>
@@ -57,24 +76,32 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                         </button>
 
                         {/* Left: Image Section */}
-                        <div className="relative w-full md:w-[40%] h-[35vh] md:h-full flex-shrink-0 bg-bd-green/5">
-                            <AnimatePresence>
-                                {fact.image ? (
-                                    <motion.img
-                                        key={fact.image}
-                                        src={fact.image}
-                                        alt={fact.title}
-                                        className="absolute inset-0 w-full h-full object-cover"
+                        <div className="relative w-full md:w-[40%] h-[35vh] md:h-full flex-shrink-0 bg-bd-green/5 flex flex-col">
+                            <AnimatePresence mode="wait">
+                                {currentImage ? (
+                                    <motion.div
+                                        key={currentImage}
+                                        className="relative flex-1 cursor-pointer group"
                                         initial={{ opacity: 0, scale: 1.05 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0 }}
-                                        transition={{
-                                            duration: 0.5,
-                                            ease: "easeOut",
-                                        }}
-                                    />
+                                        transition={{ duration: 0.3 }}
+                                        onClick={() => setIsFullscreen(true)}
+                                    >
+                                        <Image
+                                            src={currentImage}
+                                            alt={fact.title}
+                                            fill
+                                            priority
+                                            className="object-cover w-full h-full"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                        />
+                                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                                            <Maximize2 className="text-white w-10 h-10 drop-shadow-lg" />
+                                        </div>
+                                    </motion.div>
                                 ) : (
-                                    <div className="absolute inset-0 bg-gradient-to-br from-bd-green to-bd-green-dark flex items-center justify-center p-8">
+                                    <div className="flex-1 bg-gradient-to-br from-bd-green to-bd-green-dark flex items-center justify-center p-8">
                                         <div className="text-center">
                                             <span className="text-8xl md:text-9xl">
                                                 🇧🇩
@@ -87,6 +114,34 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                                 )}
                             </AnimatePresence>
 
+                            {/* Thumbnails */}
+                            {images.length > 1 && (
+                                <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2 bg-black/40 backdrop-blur-md p-2 rounded-xl shadow-lg border border-white/10">
+                                    {images.map((img, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedImageIndex(idx);
+                                            }}
+                                            className={`relative w-12 h-12 rounded-lg overflow-hidden transition-all duration-300 ${
+                                                idx === selectedImageIndex
+                                                    ? "ring-2 ring-bd-red scale-110"
+                                                    : "opacity-60 hover:opacity-100"
+                                            }`}
+                                        >
+                                            <Image
+                                                src={img}
+                                                alt={`Thumbnail ${idx + 1}`}
+                                                fill
+                                                className="object-cover w-full h-full"
+                                                sizes="64px"
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
                             {/* Green-Red gradient overlay at bottom / right */}
                             <div className="absolute inset-0 bg-gradient-to-t from-bd-green/90 via-bd-green/20 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-white/10 pointer-events-none" />
 
@@ -94,9 +149,6 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                             <div className="absolute bottom-6 left-6 z-10 flex items-center gap-3">
                                 <div className="px-5 py-2 bg-bd-red text-white text-xs font-black rounded-full shadow-lg uppercase tracking-[0.2em] border border-white/20">
                                     🏆 Discovery
-                                </div>
-                                <div className="px-4 py-2 bg-white/20 backdrop-blur-md text-white text-xs font-bold rounded-full uppercase tracking-wider border border-white/20">
-                                    {fact.category}
                                 </div>
                             </div>
                         </div>
@@ -133,46 +185,85 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                                         {fact.details}
                                     </p>
                                 </div>
-
-                                {/* Bottom Action Bar */}
-                                <div className="mt-auto pt-6 border-t-2 border-bd-green/10 flex flex-wrap items-center justify-between gap-4">
-                                    <div className="flex items-center gap-3 text-gray-500 hover:text-bd-red transition-colors cursor-pointer group">
-                                        <div className="w-10 h-10 rounded-xl bg-bd-red/5 group-hover:bg-bd-red group-hover:text-white flex items-center justify-center transition-all">
-                                            <Heart
-                                                size={18}
-                                                className="group-hover:fill-white transition-all"
-                                            />
-                                        </div>
-                                        <span className="text-sm font-black uppercase tracking-widest group-hover:text-bd-red transition-colors">
-                                            Like
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3 text-gray-500 hover:text-bd-red transition-colors cursor-pointer group">
-                                        <div className="w-10 h-10 rounded-xl bg-bd-green/5 group-hover:bg-bd-red group-hover:text-white flex items-center justify-center transition-all">
-                                            <Share2
-                                                size={18}
-                                                className="group-hover:scale-110 transition-transform"
-                                            />
-                                        </div>
-                                        <span className="text-sm font-black uppercase tracking-widest group-hover:text-bd-red transition-colors">
-                                            Share
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3 text-gray-500 hover:text-bd-red transition-colors cursor-pointer group">
-                                        <div className="w-10 h-10 rounded-xl bg-bd-red/5 group-hover:bg-bd-red group-hover:text-white flex items-center justify-center transition-all">
-                                            <MapPin
-                                                size={18}
-                                                className="group-hover:scale-110 transition-transform"
-                                            />
-                                        </div>
-                                        <span className="text-sm font-black uppercase tracking-widest group-hover:text-bd-red transition-colors">
-                                            Location
-                                        </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </motion.div>
+
+                    {/* Fullscreen Image Modal */}
+                    <AnimatePresence>
+                        {isFullscreen && currentImage && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="fixed inset-0 z-[200] flex items-center justify-center bg-[#004d39]/80 backdrop-blur-2xl"
+                                onClick={() => setIsFullscreen(false)}
+                            >
+                                <button
+                                    className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-3 bg-white/10 hover:bg-bd-red text-white rounded-full backdrop-blur-md transition-colors shadow-2xl"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsFullscreen(false);
+                                    }}
+                                >
+                                    <X size={24} />
+                                </button>
+
+                                <motion.div
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{
+                                        duration: 0.3,
+                                        type: "spring",
+                                        stiffness: 300,
+                                        damping: 25,
+                                    }}
+                                    className="relative w-[95vw] h-[90vh]"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <Image
+                                        src={currentImage}
+                                        alt={fact.title}
+                                        fill
+                                        className="object-contain drop-shadow-2xl"
+                                        sizes="100vw"
+                                        quality={90}
+                                    />
+                                </motion.div>
+
+                                {/* Thumbnails in fullscreen mode */}
+                                {images.length > 1 && (
+                                    <div
+                                        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-3 p-3 bg-black/60 backdrop-blur-xl rounded-2xl shadow-xl border border-white/5"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {images.map((img, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() =>
+                                                    setSelectedImageIndex(idx)
+                                                }
+                                                className={`w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden transition-all duration-300 ${
+                                                    idx === selectedImageIndex
+                                                        ? "ring-2 ring-white scale-110 shadow-lg"
+                                                        : "opacity-50 hover:opacity-100"
+                                                }`}
+                                            >
+                                                <Image
+                                                    src={img}
+                                                    alt="Thumb"
+                                                    fill
+                                                    className="object-cover w-full h-full"
+                                                    sizes="64px"
+                                                />
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             )}
         </AnimatePresence>
