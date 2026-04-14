@@ -250,12 +250,10 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                                                         : "opacity-50 hover:opacity-100"
                                                 }`}
                                             >
-                                                <Image
+                                                <img
                                                     src={img}
                                                     alt="Thumb"
-                                                    fill
-                                                    className="object-cover w-full h-full"
-                                                    sizes="64px"
+                                                    className="w-full h-full object-cover"
                                                 />
                                             </button>
                                         ))}
