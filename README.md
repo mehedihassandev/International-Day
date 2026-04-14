@@ -108,6 +108,13 @@ A huge thank you to everyone who has helped build and maintain this project!
             <br />
             <sub><b>Ashiq</b></sub>
         </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Sumiya-Sayeed">
+            <img src="https://avatars.githubusercontent.com/u/17126793?v=4" width="100;" alt="Sumiya-Sayeed"/>
+            <br />
+            <sub><b>Sumiya Sayeed</b></sub>
+        </a>
     </td></tr>
 </table>
 <!-- readme: contributors -end -->
