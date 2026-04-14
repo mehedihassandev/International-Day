@@ -7,6 +7,7 @@ export interface Recipe {
     serves?: string;
     prepTime?: string;
     image: string;
+    images?: string[];
     imagePrompt: string;
 }
 
@@ -38,6 +39,7 @@ export const recipes: Recipe[] = [
             "Shallow fry on medium heat until golden brown on both sides.",
         ],
         image: "https://ajinomotobangladesh.com/wp-content/uploads/2023/01/1-2-scaled.jpg",
+        images: ["https://ajinomotobangladesh.com/wp-content/uploads/2023/01/1-2-scaled.jpg", "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lula_kebab_2.jpg"],
         imagePrompt:
             "Crispy golden brown Chicken Tikiya patties on a white plate, garnished with fresh cilantro and onion rings, served with green chutney.",
     },
@@ -67,6 +69,7 @@ export const recipes: Recipe[] = [
             "Fry until browned and fully cooked inside.",
         ],
         image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",
+        images: ["https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800", "https://upload.wikimedia.org/wikipedia/commons/d/df/4th_October_2012_Shami_Kebab.jpg"],
         imagePrompt:
             "Deliciously thick Beef Tikiya patties, dark brown crust, moist inside, served with fragrant Polao rice and salad.",
     },
@@ -95,6 +98,7 @@ export const recipes: Recipe[] = [
             "Dip the potato balls and deep fry until golden and crispy.",
         ],
         image: "https://static.wixstatic.com/media/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg",
+        images: ["https://static.wixstatic.com/media/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/05c508_39d14807ef4d41fcbdb798c9ed74bb47~mv2.jpg", "https://upload.wikimedia.org/wikipedia/commons/d/d1/Aloo_Tikki_served_with_chutneys.jpg"],
         imagePrompt:
             "Street-style Alur Chop (potato fritters), crispy yellow-orange batter, served in a recycled paper bowl, very appetizing.",
     },
@@ -121,6 +125,7 @@ export const recipes: Recipe[] = [
             "Cook both sides until slightly crispy.",
         ],
         image: "https://withaspin.com/wp-content/uploads/2013/03/Chapri-1.jpg",
+        images: ["https://withaspin.com/wp-content/uploads/2013/03/Chapri-1.jpg", "https://upload.wikimedia.org/wikipedia/commons/f/fe/2_Chapati_warm_and_ready_to_be_eaten.jpg"],
         imagePrompt:
             "Traditional Chapti pancake on a cast iron pan, thin and crispy edges, visible bits of green chili and coriander, rustic kitchen setting.",
     },
@@ -148,6 +153,7 @@ export const recipes: Recipe[] = [
             "Simmer covered until fish is tender and gravy is thick.",
         ],
         image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/%E0%A6%90%E0%A6%A4%E0%A6%BF%E0%A6%B9%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%B9%E0%A7%80_%E0%A6%B8%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A7%87_%E0%A6%87%E0%A6%B2%E0%A6%BF%E0%A6%B6.jpg",
+        images: ["https://upload.wikimedia.org/wikipedia/commons/9/9a/%E0%A6%90%E0%A6%A4%E0%A6%BF%E0%A6%B9%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%B9%E0%A7%80_%E0%A6%B8%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A7%87_%E0%A6%87%E0%A6%B2%E0%A6%BF%E0%A6%B6.jpg", "https://upload.wikimedia.org/wikipedia/commons/d/d3/BHilsa123.jpg"],
         imagePrompt:
             "Classic Shorshe Ilish fish curry, silver hilsa pieces in a thick yellow mustard gravy, green chilies on top, served in a traditional clay bowl.",
     },
@@ -171,6 +177,7 @@ export const recipes: Recipe[] = [
             "Add onion and chili on the side.",
         ],
         image: "https://zuranazrecipe.com/wp-content/uploads/2016/03/Pohela-Boishaks-Panta-Ilish...1.jpg",
+        images: ["https://zuranazrecipe.com/wp-content/uploads/2016/03/Pohela-Boishaks-Panta-Ilish...1.jpg", "https://upload.wikimedia.org/wikipedia/commons/e/e6/Panta_Ilish.jpg"],
         imagePrompt:
             "Panta Ilish traditional dish, fermented rice with fried hilsa, onion and green chili, Bengali new year food.",
     },
@@ -197,6 +204,7 @@ export const recipes: Recipe[] = [
             "Seal pot with dough and cook on low heat for 1 hour until meat is tender.",
         ],
         image: "https://dishstories.com/wp-content/uploads/2025/10/Kacchi-Biryani-in-Plate-with-mutton-piece.webp",
+        images: ["https://dishstories.com/wp-content/uploads/2025/10/Kacchi-Biryani-in-Plate-with-mutton-piece.webp", "https://upload.wikimedia.org/wikipedia/commons/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg"],
         imagePrompt:
             "Royal Kacchi Biryani served in a large silver 'degh' or plate, tender mutton pieces bursting through fragrant rice, golden potatoes.",
     },
@@ -222,6 +230,7 @@ export const recipes: Recipe[] = [
             "Soak the discs in the thickened milk and chill before serving.",
         ],
         image: "https://binnifood.com/wp-content/uploads/2023/12/%E0%A6%95%E0%A7%81%E0%A6%AE%E0%A6%BF%E0%A6%B2%E0%A7%8D%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%AC%E0%A6%BF%E0%A6%96%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A4-%E0%A6%B0%E0%A6%B8%E0%A6%AE%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%87-%E0%A6%A4%E0%A7%88%E0%A6%B0%E0%A6%BF%E0%A6%B0-%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A6%BF%E0%A6%AA%E0%A6%BF-%E0%A6%93-%E0%A6%87%E0%A6%A4%E0%A6%BF%E0%A6%B9%E0%A6%BE%E0%A6%B8.png",
+        images: ["https://binnifood.com/wp-content/uploads/2023/12/%E0%A6%95%E0%A7%81%E0%A6%AE%E0%A6%BF%E0%A6%B2%E0%A7%8D%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%AC%E0%A6%BF%E0%A6%96%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A4-%E0%A6%B0%E0%A6%B8%E0%A6%AE%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%87-%E0%A6%A4%E0%A7%88%E0%A6%B0%E0%A6%BF%E0%A6%B0-%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A6%BF%E0%A6%AA%E0%A6%BF-%E0%A6%93-%E0%A6%87%E0%A6%A4%E0%A6%BF%E0%A6%B9%E0%A6%BE%E0%A6%B8.png", "https://upload.wikimedia.org/wikipedia/commons/a/ae/Ras_Malai_2.JPG"],
         imagePrompt:
             "Cumilla's famous Rasmalai, small white cheese discs in thick creamy milk, garnished with saffron strands and pistachios, served in a traditional bowl.",
     },
@@ -245,6 +254,7 @@ export const recipes: Recipe[] = [
             "Pour into a clay pot and let set in a warm place for 8-12 hours.",
         ],
         image: "https://www.thedailystar.net/sites/default/files/styles/big_1/public/images/2024/08/12/_b3a6396.jpg",
+        images: ["https://www.thedailystar.net/sites/default/files/styles/big_1/public/images/2024/08/12/_b3a6396.jpg", "https://upload.wikimedia.org/wikipedia/commons/3/34/Mishti_Doi.jpg"],
         imagePrompt:
             "Bogura's famous Sweet Curd (Doi) in a rustic clay pot, dense and creamy texture, deep brownish-orange color, perfectly set.",
     },
@@ -273,6 +283,7 @@ export const recipes: Recipe[] = [
             "Cook on low heat (dum) until flavors blend.",
         ],
         image: "https://static.wixstatic.com/media/05c508_761b7feac76b4f9f9b6825f936a41ed0~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/05c508_761b7feac76b4f9f9b6825f936a41ed0~mv2.jpg",
+        images: ["https://static.wixstatic.com/media/05c508_761b7feac76b4f9f9b6825f936a41ed0~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/05c508_761b7feac76b4f9f9b6825f936a41ed0~mv2.jpg", "https://upload.wikimedia.org/wikipedia/commons/d/dd/Afghan_Palo.jpg"],
         imagePrompt:
             "Morog Polao Bangladesh, golden fragrant rice with chicken, slightly sweet aroma, festive presentation.",
     },
@@ -301,6 +312,7 @@ export const recipes: Recipe[] = [
             "Cook with water until soft and slightly thick.",
         ],
         image: "https://rumkisgoldenspoon.com/wp-content/uploads/2021/05/Bhuna-khichuri-recipe.jpg",
+        images: ["https://rumkisgoldenspoon.com/wp-content/uploads/2021/05/Bhuna-khichuri-recipe.jpg"],
         imagePrompt:
             "Bhuna Khichuri Bangladesh, thick golden rice and lentil dish, rainy day comfort food.",
     },
@@ -327,6 +339,7 @@ export const recipes: Recipe[] = [
             "Dip in tamarind water before serving.",
         ],
         image: "https://images.deliveryhero.io/image/fd-bd/LH/f493-listing.jpg",
+        images: ["https://images.deliveryhero.io/image/fd-bd/LH/f493-listing.jpg", "https://upload.wikimedia.org/wikipedia/commons/e/e9/Pani_Puri1.JPG"],
         imagePrompt:
             "Fuchka Bangladesh street food, crispy shells filled with spicy potato, tangy water, served roadside.",
     },
@@ -353,6 +366,7 @@ export const recipes: Recipe[] = [
             "Garnish with coriander and serve warm.",
         ],
         image: "https://static.vecteezy.com/system/resources/previews/045/963/098/non_2x/spicy-chotpoti-include-chickpea-tomato-onion-cabbage-chilli-coriander-and-sauce-served-in-plate-isolated-on-wooden-table-side-view-of-bangladeshi-street-food-photo.jpg",
+        images: ["https://static.vecteezy.com/system/resources/previews/045/963/098/non_2x/spicy-chotpoti-include-chickpea-tomato-onion-cabbage-chilli-coriander-and-sauce-served-in-plate-isolated-on-wooden-table-side-view-of-bangladeshi-street-food-photo.jpg", "https://upload.wikimedia.org/wikipedia/commons/7/7b/Chotpoti_%28cropped%29.jpg"],
         imagePrompt:
             "Chotpoti Bangladesh street food bowl, spicy chickpeas with tamarind, onion, and herbs.",
     },
