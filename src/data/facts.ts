@@ -1,3 +1,5 @@
+import { initialFacts } from '@/scripts/seed-data';
+
 export interface Fact {
     id: string;
     title: string;
@@ -9,5 +11,5 @@ export interface Fact {
     imagePrompt: string;
 }
 
-// Static dummy data removed. All data is dynamically fetched from MongoDB Atlas.
-export const facts: Fact[] = [];
+export const facts: Fact[] = initialFacts;
+

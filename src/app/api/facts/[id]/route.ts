@@ -14,6 +14,8 @@ interface RouteContext {
   params: Promise<{ id: string }>;
 }
 
+import { initialFacts } from '@/scripts/seed-data';
+
 /**
  * Helper to query by slug ID or MongoDB ObjectId
  */
@@ -29,20 +31,24 @@ function buildIdQuery(id: string) {
  * Retrieves a single fact by slug or _id
  */
 export async function GET(_request: NextRequest, context: RouteContext) {
+  const { id } = await context.params;
+
   try {
     await connectToDatabase();
-    const { id } = await context.params;
-
     const fact = await Fact.findOne(buildIdQuery(id)).lean();
-
-    if (!fact) {
-      return apiNotFound(`Fact with identifier '${id}' not found`);
+    if (fact) {
+      return apiSuccess(fact);
     }
-
-    return apiSuccess(fact);
-  } catch (error: any) {
-    return apiServerError('Failed to retrieve fact', error.message || error);
+  } catch (error) {
+    console.warn(`Fact ${id} query error, checking static fallback:`, error);
   }
+
+  const fallback = initialFacts.find((f) => f.id === id);
+  if (fallback) {
+    return apiSuccess(fallback);
+  }
+
+  return apiNotFound(`Fact with identifier '${id}' not found`);
 }
 
 /**

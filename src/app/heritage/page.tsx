@@ -123,52 +123,12 @@ export default function HeritagePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         <AnimatePresence>
                             {facts.map((fact, index) => (
-                                <motion.div
+                                <FactCard
                                     key={fact.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ delay: Math.min(index * 0.04, 0.4) }}
-                                    onClick={() => setSelectedFact(fact)}
-                                    className="group cursor-pointer bg-white/90 backdrop-blur-sm rounded-2xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 shadow-soft hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] transition-all duration-300 overflow-hidden flex flex-col"
-                                >
-                                    {/* Image Section */}
-                                    <div className="relative w-full h-48 overflow-hidden bg-earth-light/20">
-                                        {fact.image ? (
-                                            <Image
-                                                src={fact.image}
-                                                alt={fact.title}
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, 30vw"
-                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 bd-gradient opacity-10" />
-                                        )}
-
-                                        {/* Expand overlay icon */}
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                                            <div className="w-12 h-12 rounded-full bg-white/90 shadow-lg text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                                                <Maximize2 size={24} />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Info Section */}
-                                    <div className="p-6 flex flex-col flex-1">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <span className="px-3 py-1 bg-bd-green/10 text-bd-green text-[10px] font-black rounded-full uppercase tracking-wider border border-bd-green/20">
-                                                {fact.category}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-black text-foreground mb-2 group-hover:text-bd-red transition-colors">
-                                            {fact.title}
-                                        </h3>
-                                        <p className="text-muted-foreground text-sm line-clamp-2">
-                                            {fact.description}
-                                        </p>
-                                    </div>
-                                </motion.div>
+                                    fact={fact}
+                                    index={index}
+                                    onSelect={() => setSelectedFact(fact)}
+                                />
                             ))}
                         </AnimatePresence>
                     </div>
@@ -184,3 +144,76 @@ export default function HeritagePage() {
         </div>
     );
 }
+
+function FactCard({ fact, index, onSelect }: { fact: Fact; index: number; onSelect: () => void }) {
+    const defaultSrc = fact.image || `/images/facts/${fact.id}.jpg`;
+    const [imgSrc, setImgSrc] = React.useState(defaultSrc);
+
+    React.useEffect(() => {
+        setImgSrc(fact.image || `/images/facts/${fact.id}.jpg`);
+    }, [fact.image, fact.id]);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ delay: Math.min(index * 0.04, 0.4) }}
+            onClick={onSelect}
+            className="group cursor-pointer bg-white/90 backdrop-blur-sm rounded-2xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 shadow-soft hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] transition-all duration-300 overflow-hidden flex flex-col"
+        >
+            {/* Image Section */}
+            <div className="relative w-full h-48 overflow-hidden bg-earth-light/20">
+                <Image
+                    src={imgSrc || `/images/facts/${fact.id}.jpg`}
+                    alt={fact.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={() => {
+                        if (imgSrc !== `/images/facts/${fact.id}.jpg`) {
+                            setImgSrc(`/images/facts/${fact.id}.jpg`);
+                        }
+                    }}
+                />
+
+                {/* Multi-Image Badge */}
+                {fact.images && fact.images.length > 1 && (
+                    <div className="absolute top-3 right-3 z-10">
+                        <span className="px-2.5 py-1 bg-black/60 text-white text-[10px] font-bold rounded-lg shadow-lg backdrop-blur-md flex items-center gap-1 border border-white/20">
+                            📸 {fact.images.length}
+                        </span>
+                    </div>
+                )}
+
+                {/* Expand overlay icon */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-white/90 shadow-lg text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                        <Maximize2 size={24} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Info Section */}
+            <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-bd-green/10 text-bd-green text-[10px] font-black rounded-full uppercase tracking-wider border border-bd-green/20">
+                        {fact.category}
+                    </span>
+                    {fact.images && fact.images.length > 1 && (
+                        <span className="text-[11px] font-medium text-bd-green/80">
+                            {fact.images.length} photos
+                        </span>
+                    )}
+                </div>
+                <h3 className="text-xl font-black text-foreground mb-2 group-hover:text-bd-red transition-colors">
+                    {fact.title}
+                </h3>
+                <p className="text-muted-foreground text-sm line-clamp-2">
+                    {fact.description}
+                </p>
+            </div>
+        </motion.div>
+    );
+}
+

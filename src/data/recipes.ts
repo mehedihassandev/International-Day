@@ -1,3 +1,5 @@
+import { initialRecipes } from '@/scripts/seed-data';
+
 export interface Recipe {
     id: string;
     title: string;
@@ -12,5 +14,5 @@ export interface Recipe {
     imagePrompt: string;
 }
 
-// Static dummy data removed. All data is dynamically fetched from MongoDB Atlas.
-export const recipes: Recipe[] = [];
+export const recipes: Recipe[] = initialRecipes;
+

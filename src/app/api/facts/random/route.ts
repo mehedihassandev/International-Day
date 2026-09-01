@@ -1,28 +1,38 @@
 import { NextRequest } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Fact } from '@/models/Fact';
-import { apiSuccess, apiServerError } from '@/lib/api-response';
+import { initialFacts } from '@/scripts/seed-data';
+import { apiSuccess } from '@/lib/api-response';
 
 /**
  * GET /api/facts/random
  * Returns N random facts from MongoDB (defaults to 1, or count query param)
  */
 export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const countParam = parseInt(searchParams.get('count') || '1', 10);
+  const count = isNaN(countParam) || countParam < 1 ? 1 : Math.min(countParam, 50);
+
   try {
     await connectToDatabase();
-
-    const { searchParams } = new URL(request.url);
-    const countParam = parseInt(searchParams.get('count') || '1', 10);
-    const count = isNaN(countParam) || countParam < 1 ? 1 : Math.min(countParam, 50);
-
     const randomFacts = await Fact.aggregate([{ $sample: { size: count } }]);
-
-    if (count === 1) {
-      return apiSuccess(randomFacts[0] || null);
+    if (randomFacts && randomFacts.length > 0) {
+      if (count === 1) {
+        return apiSuccess(randomFacts[0]);
+      }
+      return apiSuccess(randomFacts, undefined, { count: randomFacts.length });
     }
-
-    return apiSuccess(randomFacts, undefined, { count: randomFacts.length });
-  } catch (error: any) {
-    return apiServerError('Failed to fetch random facts', error.message || error);
+  } catch (error) {
+    console.warn('Random facts MongoDB query failed, falling back to static dataset:', error);
   }
+
+  // Fallback to random shuffled initialFacts
+  const shuffled = [...initialFacts].sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, count);
+
+  if (count === 1) {
+    return apiSuccess(selected[0] || null);
+  }
+
+  return apiSuccess(selected, undefined, { count: selected.length });
 }

@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Fact } from '@/models/Fact';
 import { CreateFactSchema, FactQuerySchema } from '@/lib/validations/fact';
+import { initialFacts } from '@/scripts/seed-data';
 import {
   apiSuccess,
   apiCreated,
@@ -14,23 +15,23 @@ import {
  * Fetches facts with optional filters (category, search, pagination, sort)
  */
 export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const queryValidation = FactQuerySchema.safeParse({
+    category: searchParams.get('category') || undefined,
+    search: searchParams.get('search') || undefined,
+    page: searchParams.get('page') || undefined,
+    limit: searchParams.get('limit') || undefined,
+    sort: searchParams.get('sort') || undefined,
+  });
+
+  if (!queryValidation.success) {
+    return apiBadRequest('Invalid query parameters', queryValidation.error.flatten());
+  }
+
+  const { category, search, page = 1, limit = 50, sort } = queryValidation.data;
+
   try {
     await connectToDatabase();
-
-    const { searchParams } = new URL(request.url);
-    const queryValidation = FactQuerySchema.safeParse({
-      category: searchParams.get('category') || undefined,
-      search: searchParams.get('search') || undefined,
-      page: searchParams.get('page') || undefined,
-      limit: searchParams.get('limit') || undefined,
-      sort: searchParams.get('sort') || undefined,
-    });
-
-    if (!queryValidation.success) {
-      return apiBadRequest('Invalid query parameters', queryValidation.error.flatten());
-    }
-
-    const { category, search, page, limit, sort } = queryValidation.data;
 
     // Build filter
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,15 +63,40 @@ export async function GET(request: NextRequest) {
       Fact.countDocuments(filter),
     ]);
 
-    return apiSuccess(facts, undefined, {
-      count: facts.length,
-      total,
-      page,
-      limit,
-    });
-  } catch (error: any) {
-    return apiServerError('Failed to fetch facts', error.message || error);
+    if (facts && facts.length > 0) {
+      return apiSuccess(facts, undefined, {
+        count: facts.length,
+        total,
+        page,
+        limit,
+      });
+    }
+  } catch (error) {
+    console.warn('MongoDB query failed, falling back to initial facts dataset:', error);
   }
+
+  // Fallback to initialFacts
+  let filtered = [...initialFacts];
+  if (category && category.toLowerCase() !== 'all') {
+    filtered = filtered.filter(f => f.category.toLowerCase() === category.toLowerCase());
+  }
+  if (search) {
+    const q = search.toLowerCase();
+    filtered = filtered.filter(f =>
+      f.title.toLowerCase().includes(q) ||
+      f.description.toLowerCase().includes(q) ||
+      f.details.toLowerCase().includes(q)
+    );
+  }
+  const skip = (page - 1) * limit;
+  const paginated = filtered.slice(skip, skip + limit);
+
+  return apiSuccess(paginated, undefined, {
+    count: paginated.length,
+    total: filtered.length,
+    page,
+    limit,
+  });
 }
 
 /**

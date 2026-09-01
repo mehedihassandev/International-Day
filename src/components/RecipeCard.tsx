@@ -17,6 +17,13 @@ interface RecipeCardProps {
  * Features a national color theme and elegant layout.
  */
 export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
+    const defaultSrc = recipe.image || `/images/recipes/${recipe.id}.jpg`;
+    const [imgSrc, setImgSrc] = React.useState(defaultSrc);
+
+    React.useEffect(() => {
+        setImgSrc(recipe.image || `/images/recipes/${recipe.id}.jpg`);
+    }, [recipe.image, recipe.id]);
+
     return (
         <motion.div
             layout
@@ -30,32 +37,42 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             <div className="h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green" />
 
             {/* Thumbnail Image */}
-            {recipe.image && (
-                <div className="w-full h-52 md:h-60 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
-                    <Image
-                        src={recipe.image}
-                        alt={recipe.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 30vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-2xl text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                            <Maximize2 size={24} />
-                        </div>
+            <div className="w-full h-52 md:h-60 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+                <Image
+                    src={imgSrc || `/images/recipes/${recipe.id}.jpg`}
+                    alt={recipe.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                    onError={() => {
+                        if (imgSrc !== `/images/recipes/${recipe.id}.jpg`) {
+                            setImgSrc(`/images/recipes/${recipe.id}.jpg`);
+                        }
+                    }}
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-2xl text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                        <Maximize2 size={24} />
                     </div>
+                </div>
 
-                    {/* Discovery Badge overlay on card */}
-                    <div className="absolute top-4 left-4">
+
+                    {/* Badges overlay on card */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
                         <span className="px-3 py-1 bg-bd-red text-white text-[10px] font-black rounded-lg shadow-lg uppercase tracking-widest backdrop-blur-md">
                             Top Choice
                         </span>
+                        {recipe.images && recipe.images.length > 1 && (
+                            <span className="px-2.5 py-1 bg-black/60 text-white text-[10px] font-bold rounded-lg shadow-lg backdrop-blur-md flex items-center gap-1 border border-white/20">
+                                📸 {recipe.images.length}
+                            </span>
+                        )}
                     </div>
                 </div>
-            )}
 
             {/* Content Section */}
             <div className="p-7 flex-1 flex flex-col">
+
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex gap-2">
                         <span className="px-3 py-1 bg-bd-green/5 text-bd-green text-[10px] font-black rounded-full uppercase tracking-widest border border-bd-green/10">
