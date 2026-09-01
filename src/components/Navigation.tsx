@@ -8,42 +8,60 @@ import { Compass, UtensilsCrossed, Library } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Premium Navigation component for the Bangladesh Cultural Showcase.
- * Features the national flag as a logo and modern tab-based switching.
+ * Modern Navigation component for the Bangladesh Cultural Showcase.
+ * Features the national flag emblem and responsive tab-based navigation.
  */
 export function Navigation() {
     const pathname = usePathname();
 
     const navItems = [
-        { name: "Explore Facts", href: "/", icon: Compass },
-        { name: "Heritage Gallery", href: "/heritage", icon: Library },
-        { name: "Bengali Kitchen", href: "/foods", icon: UtensilsCrossed },
+        {
+            name: "Explore Facts",
+            shortName: "Explore",
+            href: "/",
+            icon: Compass,
+        },
+        {
+            name: "Heritage Gallery",
+            shortName: "Heritage",
+            href: "/heritage",
+            icon: Library,
+        },
+        {
+            name: "Bengali Kitchen",
+            shortName: "Kitchen",
+            href: "/foods",
+            icon: UtensilsCrossed,
+        },
     ];
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-bd-green/95 dark:bg-[#004d39]/95 backdrop-blur-xl shadow-lg border-b border-white/10">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
+        <header className="sticky top-0 z-50 w-full bg-bd-green-dark/95 backdrop-blur-xl border-b border-emerald-700/30 shadow-md">
+            <div className="container mx-auto px-3 sm:px-4">
+                <div className="flex items-center justify-between h-16 sm:h-20">
                     {/* Logo Section */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <div className="relative h-12 w-12 flex items-center justify-center">
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0"
+                    >
+                        <div className="relative h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center">
                             {/* Stylized BD Flag Logo */}
-                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl rotate-3 group-hover:rotate-0 transition-transform duration-300 shadow-lg border border-white/20" />
-                            <div className="relative h-6 w-6 bg-bd-red rounded-full shadow-[0_0_15px_rgba(244,42,65,0.6)] animate-glow" />
+                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl rotate-3 group-hover:rotate-0 transition-transform duration-300 shadow-sm border border-white/20" />
+                            <div className="relative h-5 w-5 sm:h-6 sm:w-6 bg-bd-red rounded-full shadow-[0_0_14px_rgba(206,17,38,0.7)] animate-glow" />
                         </div>
-                        <div className="hidden sm:block">
-                            <span className="text-xl font-black tracking-tight text-white block leading-none drop-shadow-sm">
-                                INTERNATIONAL{" "}
-                                <span className="text-bd-red drop-shadow-[0_1px_5px_rgba(244,42,65,0.4)]">DAY</span>
+                        <div className="flex flex-col">
+                            <span className="text-base sm:text-lg md:text-xl font-black tracking-tight text-white block leading-none drop-shadow-sm">
+                                Bangladesh{" "}
+                                <span className="text-rose-400">Cultural</span>
                             </span>
-                            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-white/70">
-                                Heritage of Bangladesh
+                            <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.2em] text-emerald-300/80 mt-0.5">
+                                Heritage • Nature • Culinary
                             </span>
                         </div>
                     </Link>
 
-                    {/* Navigation Items */}
-                    <div className="flex items-center gap-2 bg-black/20 p-1 rounded-2xl border border-white/10">
+                    {/* Navigation Items (Responsive) */}
+                    <nav className="flex items-center gap-1 sm:gap-1.5 bg-black/25 p-1 sm:p-1.5 rounded-2xl border border-white/10 backdrop-blur-md">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href;
                             const Icon = item.icon;
@@ -53,39 +71,44 @@ export function Navigation() {
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
-                                        "relative flex items-center justify-center gap-2 px-6 py-2 min-h-[44px] rounded-xl text-sm font-bold transition-all duration-300",
+                                        "relative flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 min-h-[38px] sm:min-h-[42px] rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 select-none",
                                         isActive
-                                            ? "text-bd-red shadow-sm"
-                                            : "text-white/70 hover:text-bd-red hover:bg-white/10",
+                                            ? "text-bd-green-dark shadow-sm"
+                                            : "text-emerald-100/75 hover:text-white hover:bg-white/10",
                                     )}
                                 >
                                     {isActive && (
                                         <motion.div
                                             layoutId="nav-pill"
-                                            className="absolute inset-0 bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                                            className="absolute inset-0 bg-white rounded-xl shadow-md"
                                             initial={false}
                                             transition={{
                                                 type: "spring",
-                                                stiffness: 400,
-                                                damping: 30,
+                                                stiffness: 450,
+                                                damping: 35,
                                             }}
                                         />
                                     )}
                                     <Icon
                                         className={cn(
-                                            "h-4 w-4 relative z-10",
-                                            isActive && "animate-pulse",
+                                            "h-3.5 w-3.5 sm:h-4 sm:w-4 relative z-10 flex-shrink-0",
+                                            isActive && "text-bd-red",
                                         )}
                                     />
-                                    <span className="relative z-10">
+                                    <span className="relative z-10 hidden md:inline">
                                         {item.name}
+                                    </span>
+                                    <span className="relative z-10 inline md:hidden">
+                                        {item.shortName}
                                     </span>
                                 </Link>
                             );
                         })}
-                    </div>
+                    </nav>
                 </div>
             </div>
-        </nav>
+        </header>
     );
 }
+
+export default Navigation;

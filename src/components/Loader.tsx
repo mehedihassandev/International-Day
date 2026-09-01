@@ -27,6 +27,8 @@ export function Loader({
 
     return (
         <div
+            role="status"
+            aria-label={text || "Loading content"}
             className={cn(
                 "flex flex-col items-center justify-center p-4 bg-transparent select-none",
                 fullHeight && "min-h-[300px] w-full flex-1",

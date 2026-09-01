@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Utensils, Clock, Users, Maximize2 } from "lucide-react";
+import { Clock, Users, ArrowUpRight, Sparkles } from "lucide-react";
 import { Recipe } from "@/data/recipes";
 
 interface RecipeCardProps {
@@ -20,81 +20,82 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -5 }}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.3 }}
             onClick={onClick}
-            className="group relative bg-white/90 backdrop-blur-xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] rounded-3xl overflow-hidden shadow-soft transition-all duration-500 flex flex-col cursor-pointer"
+            className="group relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-emerald-950/10 dark:border-white/10 hover:border-bd-green/40 dark:hover:border-emerald-500/40 rounded-3xl overflow-hidden shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col cursor-pointer"
         >
-            <div className="h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green" />
+            {/* Top Accent Strip */}
+            <div className="h-1 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-gold opacity-80 group-hover:opacity-100 transition-opacity" />
 
-            <div className="w-full h-52 md:h-60 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+            {/* Image Container */}
+            <div className="w-full h-52 sm:h-56 overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
                 <Image
                     src={imgSrc}
                     alt={recipe.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     onError={() => setImgSrc(fallbackSrc)}
                 />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-2xl text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                        <Maximize2 size={24} />
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                {/* Floating Badges */}
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-2">
+                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[10px] font-black rounded-xl uppercase tracking-wider border border-white/20 shadow-sm flex items-center gap-1">
+                        <Sparkles size={11} className="text-amber-400" />
+                        {recipe.category || "Traditional"}
+                    </span>
                 </div>
 
-                <div className="absolute top-4 left-4 flex items-center gap-2">
-                    <span className="px-3 py-1 bg-bd-red text-white text-[10px] font-black rounded-lg shadow-lg uppercase tracking-widest backdrop-blur-md">
-                        Top Choice
-                    </span>
-                    {recipe.images && recipe.images.length > 1 && (
-                        <span className="px-2.5 py-1 bg-black/60 text-white text-[10px] font-bold rounded-lg shadow-lg backdrop-blur-md flex items-center gap-1 border border-white/20">
+                {recipe.images && recipe.images.length > 1 && (
+                    <div className="absolute top-3.5 right-3.5">
+                        <span className="px-2.5 py-1 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold rounded-xl border border-white/20 shadow-sm flex items-center gap-1">
                             📸 {recipe.images.length}
                         </span>
-                    )}
+                    </div>
+                )}
+
+                {/* Quick View Corner Icon */}
+                <div className="absolute bottom-3 right-3 w-9 h-9 rounded-xl bg-white/90 dark:bg-slate-900/90 text-bd-green dark:text-emerald-400 backdrop-blur-md flex items-center justify-center shadow-md group-hover:bg-bd-red group-hover:text-white transition-all duration-300 scale-90 group-hover:scale-100">
+                    <ArrowUpRight size={16} />
                 </div>
             </div>
 
-            <div className="p-7 flex-1 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-bd-green/5 text-bd-green text-[10px] font-black rounded-full uppercase tracking-widest border border-bd-green/10">
-                        Authentic
-                    </span>
-                    <div className="h-9 w-9 bg-bd-red/5 rounded-xl flex items-center justify-center text-bd-red group-hover:bg-bd-red group-hover:text-white transition-colors duration-300">
-                        <Utensils size={16} />
-                    </div>
+            {/* Card Content */}
+            <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-bd-green dark:group-hover:text-emerald-400 transition-colors line-clamp-1">
+                        {recipe.title}
+                    </h3>
+
+                    <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed line-clamp-2 mb-4 font-normal">
+                        {recipe.description}
+                    </p>
                 </div>
 
-                <h3 className="text-2xl font-black text-gray-800 dark:text-white mb-3 leading-tight group-hover:text-bd-red transition-colors">
-                    {recipe.title}
-                </h3>
-
-                <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed mb-6 italic">
-                    &ldquo;{recipe.description}&rdquo;
-                </p>
-
-                <div className="mt-auto space-y-4">
-                    <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                        <span className="flex items-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-bd-green" />
-                            {recipe.ingredients.length} Ingredients
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-bd-red" />
-                            {recipe.instructions.length} Steps
-                        </span>
+                <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                    {/* Cooking Specs */}
+                    <div className="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        <div className="flex items-center gap-1.5">
+                            <Clock size={14} className="text-bd-red" />
+                            <span>{recipe.prepTime || "30 min"}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                            <Users size={14} className="text-bd-green" />
+                            <span>{recipe.serves || "4 servings"}</span>
+                        </div>
                     </div>
 
-                    <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-gray-600 dark:text-gray-300 pt-4 border-t border-gray-100 dark:border-gray-800">
-                        <div className="flex items-center gap-2">
-                            <Clock size={14} className="text-bd-red" />
-                            <span>{recipe.prepTime || "30 MIN"}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Users size={14} className="text-bd-green" />
-                            <span>{recipe.serves || "4 PERSONS"}</span>
-                        </div>
+                    {/* Step & Ingredient Count */}
+                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                        <span>{recipe.ingredients.length} Ingredients</span>
+                        <span>{recipe.instructions.length} Steps</span>
                     </div>
                 </div>
             </div>
         </motion.div>
     );
 }
+
+export default RecipeCard;

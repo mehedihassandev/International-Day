@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, ChevronLeft, ChevronRight, Images } from "lucide-react";
+import { X, Maximize2, ChevronLeft, ChevronRight, Images, Sparkles, BookOpen } from "lucide-react";
 import { Fact } from "@/data/facts";
 import { ImageLightbox } from "@/components/ImageLightbox";
 
@@ -63,41 +63,57 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center md:p-6">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6 overflow-hidden">
+                    {/* Backdrop with Blur Fade */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-[#004d39]/60 backdrop-blur-2xl"
+                        className="absolute inset-0 bg-slate-950/80 backdrop-blur-xl"
                     />
 
+                    {/* Modal Dialog with Spring Physics */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        initial={{ opacity: 0, scale: 0.92, y: 24 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
-                        className="relative w-full h-full md:h-[85vh] md:max-w-6xl bg-white dark:bg-gray-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl"
+                        exit={{ opacity: 0, scale: 0.94, y: 16 }}
+                        transition={{ type: "spring", stiffness: 340, damping: 28 }}
+                        className="relative w-full h-full md:h-[88vh] md:max-w-6xl bg-white dark:bg-slate-950 flex flex-col md:flex-row overflow-hidden shadow-2xl md:rounded-3xl border border-white/10"
                     >
-                        <div className="md:hidden h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green flex-shrink-0" />
+                        {/* Top Gradient Accent Bar */}
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            className="h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-gold flex-shrink-0 absolute top-0 left-0 right-0 z-30 origin-left"
+                        />
 
-                        <button
+                        {/* Animated Close Button */}
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.1, rotate: 90 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ duration: 0.2 }}
                             onClick={onClose}
-                            className="absolute top-4 right-4 md:top-6 md:right-6 z-30 w-11 h-11 flex items-center justify-center bg-bd-green/90 hover:bg-bd-red text-white rounded-full transition-all duration-300 shadow-lg group cursor-pointer"
+                            aria-label="Close dialog"
+                            className="absolute top-4 right-4 md:top-6 md:right-6 z-40 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-bd-red text-white rounded-full transition-colors shadow-xl border border-white/20 cursor-pointer"
                         >
-                            <X size={20} className="transition-transform duration-300 group-hover:rotate-90" />
-                        </button>
+                            <X size={18} />
+                        </motion.button>
 
-                        {/* Image Section */}
-                        <div className="relative w-full md:w-[45%] h-[38vh] md:h-full flex-shrink-0 bg-bd-green/5 flex flex-col overflow-hidden">
+                        {/* Image Left Column */}
+                        <div className="relative w-full md:w-[48%] h-[40vh] md:h-full flex-shrink-0 bg-slate-900 flex flex-col overflow-hidden">
                             <AnimatePresence mode="wait">
                                 {currentImage ? (
                                     <motion.div
                                         key={currentImage}
                                         className="relative flex-1 cursor-pointer group"
-                                        initial={{ opacity: 0, scale: 1.05 }}
+                                        initial={{ opacity: 0, scale: 1.04 }}
                                         animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0 }}
+                                        exit={{ opacity: 0, scale: 0.98 }}
                                         transition={{ duration: 0.3 }}
                                         onClick={() => setIsFullscreen(true)}
                                     >
@@ -106,12 +122,12 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                                             alt={fact.title}
                                             fill
                                             priority
-                                            className="object-cover w-full h-full"
+                                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                         />
-                                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                                            <div className="px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-white text-xs font-bold flex items-center gap-2 drop-shadow-lg">
-                                                <Maximize2 size={16} /> Click to expand
+                                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+                                            <div className="px-4 py-2 bg-black/70 backdrop-blur-md rounded-full text-white text-xs font-bold flex items-center gap-2 drop-shadow-lg border border-white/20">
+                                                <Maximize2 size={15} /> Click to expand
                                             </div>
                                         </div>
                                     </motion.div>
@@ -129,35 +145,41 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
 
                             {images.length > 1 && (
                                 <>
-                                    <button
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
                                         onClick={handlePrevImage}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-bd-red text-white flex items-center justify-center backdrop-blur-md transition-all duration-200 shadow-lg cursor-pointer"
-                                        title="Previous Image"
+                                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-bd-red text-white flex items-center justify-center backdrop-blur-md transition-colors shadow-lg cursor-pointer border border-white/15"
+                                        aria-label="Previous Image"
                                     >
-                                        <ChevronLeft size={22} />
-                                    </button>
-                                    <button
+                                        <ChevronLeft size={20} />
+                                    </motion.button>
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
                                         onClick={handleNextImage}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-bd-red text-white flex items-center justify-center backdrop-blur-md transition-all duration-200 shadow-lg cursor-pointer"
-                                        title="Next Image"
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-bd-red text-white flex items-center justify-center backdrop-blur-md transition-colors shadow-lg cursor-pointer border border-white/15"
+                                        aria-label="Next Image"
                                     >
-                                        <ChevronRight size={22} />
-                                    </button>
+                                        <ChevronRight size={20} />
+                                    </motion.button>
 
-                                    <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-black/60 backdrop-blur-md text-white text-xs font-black rounded-full border border-white/20 shadow-md">
-                                        <Images size={14} className="text-bd-red" />
+                                    <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[11px] font-black rounded-full border border-white/20 shadow-md">
+                                        <Images size={13} className="text-amber-400" />
                                         <span>{selectedImageIndex + 1} / {images.length}</span>
                                     </div>
 
-                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md p-1.5 rounded-2xl shadow-xl border border-white/10 max-w-[90%] overflow-x-auto">
+                                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md p-1.5 rounded-2xl shadow-xl border border-white/10 max-w-[90%] overflow-x-auto custom-scrollbar">
                                         {images.map((img, idx) => (
-                                            <button
+                                            <motion.button
                                                 key={idx}
+                                                whileHover={{ scale: 1.08 }}
+                                                whileTap={{ scale: 0.95 }}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     setSelectedImageIndex(idx);
                                                 }}
-                                                className={`relative w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-300 cursor-pointer ${
+                                                className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 cursor-pointer ${
                                                     idx === selectedImageIndex
                                                         ? "ring-2 ring-bd-red scale-105 shadow-md"
                                                         : "opacity-60 hover:opacity-100"
@@ -168,79 +190,110 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
                                                     alt={`Gallery ${idx + 1}`}
                                                     fill
                                                     className="object-cover w-full h-full"
-                                                    sizes="64px"
+                                                    sizes="48px"
                                                 />
-                                            </button>
+                                            </motion.button>
                                         ))}
                                     </div>
                                 </>
                             )}
                         </div>
 
-                        {/* Content Section */}
-                        <div className="flex-1 flex flex-col overflow-hidden">
-                            <div className="hidden md:block h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green" />
-
-                            <div className="flex-1 p-6 md:p-10 lg:p-12 flex flex-col overflow-y-auto custom-scrollbar">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="px-4 py-1.5 bg-bd-green/10 text-bd-green text-xs font-black rounded-full uppercase tracking-[0.2em] border border-bd-green/20">
+                        {/* Content Right Column with Staggered Elements */}
+                        <div className="flex-1 flex flex-col overflow-hidden bg-white dark:bg-slate-950">
+                            <div className="flex-1 p-6 md:p-8 lg:p-10 flex flex-col overflow-y-auto custom-scrollbar pt-8">
+                                {/* Badges */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1, duration: 0.3 }}
+                                    className="flex items-center gap-2.5 mb-3"
+                                >
+                                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 dark:bg-emerald-950/60 text-bd-green dark:text-emerald-300 text-[11px] font-black rounded-full uppercase tracking-wider border border-emerald-200 dark:border-emerald-800/60">
+                                        <Sparkles size={11} className="text-amber-500" />
                                         {fact.category}
                                     </span>
-                                    <span className="text-bd-red/60 text-xs font-black uppercase tracking-[0.2em] border-l-2 border-bd-red/30 pl-3">
+                                    <span className="text-bd-red text-xs font-bold uppercase tracking-widest pl-2 border-l border-slate-200 dark:border-slate-800">
                                         বাংলাদেশ
                                     </span>
-                                </div>
+                                </motion.div>
 
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 leading-[1.2]">
+                                {/* Title */}
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.15, duration: 0.35 }}
+                                    className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight"
+                                >
                                     {fact.title}
-                                </h2>
+                                </motion.h2>
 
-                                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base md:text-lg italic border-l-4 border-bd-green pl-4 py-1.5 font-medium bg-bd-green/5 rounded-r-xl">
+                                {/* Description Quote */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.98, y: 8 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    transition={{ delay: 0.2, duration: 0.35 }}
+                                    className="text-slate-700 dark:text-slate-200 mb-6 text-sm sm:text-base italic border-l-4 border-bd-green pl-4 py-2 font-medium bg-emerald-50/60 dark:bg-emerald-950/20 rounded-r-2xl"
+                                >
                                     &ldquo;{fact.description}&rdquo;
-                                </p>
+                                </motion.div>
 
-                                <div className="mb-6">
-                                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm md:text-base whitespace-pre-wrap">
+                                {/* Detailed Text */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.25, duration: 0.35 }}
+                                    className="space-y-4 mb-6"
+                                >
+                                    <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-bd-green dark:text-emerald-400 mb-2">
+                                        <BookOpen size={14} /> Historical Significance
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base whitespace-pre-wrap font-normal">
                                         {fact.details}
                                     </p>
-                                </div>
+                                </motion.div>
 
+                                {/* Gallery Strip */}
                                 {images.length > 1 && (
-                                    <div className="mt-4 pt-6 border-t border-gray-100 dark:border-gray-800">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3, duration: 0.35 }}
+                                        className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800"
+                                    >
                                         <div className="flex items-center justify-between mb-3">
-                                            <h4 className="text-xs font-black uppercase tracking-widest text-bd-green flex items-center gap-2">
-                                                <Images size={16} /> Photo Showcase ({images.length} Images)
+                                            <h4 className="text-xs font-black uppercase tracking-wider text-bd-green dark:text-emerald-400 flex items-center gap-2">
+                                                <Images size={15} /> Photo Gallery ({images.length})
                                             </h4>
-                                            <span className="text-xs text-muted-foreground">Click to view</span>
+                                            <span className="text-[11px] text-slate-400">Click to expand</span>
                                         </div>
-                                        <div className="grid grid-cols-3 gap-3">
+                                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
                                             {images.map((img, idx) => (
-                                                <button
+                                                <motion.button
                                                     key={idx}
+                                                    whileHover={{ scale: 1.05, y: -2 }}
+                                                    whileTap={{ scale: 0.95 }}
                                                     onClick={() => {
                                                         setSelectedImageIndex(idx);
                                                         setIsFullscreen(true);
                                                     }}
-                                                    className={`group relative h-24 md:h-28 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer ${
+                                                    className={`group relative h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
                                                         idx === selectedImageIndex
                                                             ? "border-bd-red ring-2 ring-bd-red/30 scale-[1.02]"
-                                                            : "border-gray-200 dark:border-gray-700 hover:border-bd-green opacity-80 hover:opacity-100"
+                                                            : "border-slate-200 dark:border-slate-800 hover:border-bd-green opacity-80 hover:opacity-100"
                                                     }`}
                                                 >
                                                     <Image
                                                         src={img}
-                                                        alt={`${fact.title} Showcase ${idx + 1}`}
+                                                        alt={`${fact.title} Gallery ${idx + 1}`}
                                                         fill
-                                                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                                        sizes="(max-width: 768px) 33vw, 20vw"
+                                                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                                        sizes="120px"
                                                     />
-                                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors flex items-center justify-center">
-                                                        <Maximize2 size={16} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                    </div>
-                                                </button>
+                                                </motion.button>
                                             ))}
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 )}
                             </div>
                         </div>
@@ -261,3 +314,5 @@ export function FactModal({ fact, isOpen, onClose }: FactModalProps) {
         </AnimatePresence>
     );
 }
+
+export default FactModal;

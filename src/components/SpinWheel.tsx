@@ -157,14 +157,28 @@ export function SpinWheel({
         const winner = wheelFacts[winningIndex];
 
         if (winner) {
-            onResult(winner);
+            // Brief 400ms pause so the user sees the wheel land squarely under the needle
+            setTimeout(() => {
+                onResult(winner);
+            }, 400);
         }
     }, [controls, disabled, loading, onResult, wheelFacts]);
 
     return (
         <div className="relative flex flex-col items-center justify-center py-2 select-none">
-            {/* Subtle Clean Ambient Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] md:w-[560px] md:h-[560px] rounded-full bg-gradient-to-tr from-bd-green/15 via-amber-500/10 to-bd-red/15 blur-3xl pointer-events-none contain-paint" />
+            {/* Subtle Clean Ambient Glow with Gentle Breathing */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.6, 0.9, 0.6],
+                }}
+                transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] md:w-[560px] md:h-[560px] rounded-full bg-gradient-to-tr from-bd-green/20 via-amber-500/15 to-bd-red/20 blur-3xl pointer-events-none contain-paint"
+            />
 
             {/* Clean Modern Outer Frame & Bezel */}
             <div className="relative p-2.5 sm:p-3.5 md:p-4 rounded-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl border border-emerald-600/15 dark:border-emerald-500/20 shadow-[0_20px_50px_-12px_rgba(0,106,78,0.18),0_0_0_1px_rgba(0,0,0,0.04)] contain-paint">
@@ -218,24 +232,17 @@ export function SpinWheel({
                                         fill="white"
                                         fillOpacity="0.15"
                                     />
-                                    <path
-                                        d="M12 37L4 6H20L12 37Z"
-                                        stroke="#FFD700"
-                                        strokeWidth="0.8"
-                                        strokeOpacity="0.7"
-                                    />
                                     <defs>
                                         <linearGradient
                                             id="needle-grad"
-                                            x1="12"
-                                            y1="0"
-                                            x2="12"
-                                            y2="40"
-                                            gradientUnits="userSpaceOnUse"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
                                         >
-                                            <stop offset="0%" stopColor="#F43F5E" />
-                                            <stop offset="50%" stopColor="#CE1126" />
-                                            <stop offset="100%" stopColor="#9F1239" />
+                                            <stop offset="0%" stopColor="#FDE68A" />
+                                            <stop offset="45%" stopColor="#F59E0B" />
+                                            <stop offset="100%" stopColor="#B45309" />
                                         </linearGradient>
                                     </defs>
                                 </svg>
@@ -243,111 +250,112 @@ export function SpinWheel({
                         </div>
                     </div>
 
-                    {/* The Rotating Canvas (Isolated with GPU transform & will-change) */}
-                    <motion.div
-                        animate={controls}
-                        className="relative w-[280px] h-[280px] sm:w-[370px] sm:h-[370px] md:w-[480px] md:h-[480px] rounded-full overflow-hidden will-change-transform transform-gpu bg-neutral-900 shadow-2xl"
-                    >
-                        <svg
-                            viewBox="0 0 100 100"
-                            className="w-full h-full transform -rotate-90"
-                            style={{ shapeRendering: "geometricPrecision" }}
+                    {/* Wheel Disc Stage */}
+                    <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[480px] md:h-[480px] rounded-full overflow-hidden shadow-inner">
+                        
+                        {/* High-Performance Framer Motion Animated Rotation Wheel */}
+                        <motion.div
+                            animate={controls}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                transformOrigin: "50% 50%",
+                            }}
+                            className="transform-gpu"
                         >
-                            <defs>
-                                {/* Refined Deep Bangladesh Green Gradient */}
-                                <linearGradient
-                                    id="wheel-grad-green"
-                                    x1="0%"
-                                    y1="0%"
-                                    x2="100%"
-                                    y2="100%"
-                                >
-                                    <stop offset="0%" stopColor="#007A5A" />
-                                    <stop offset="60%" stopColor="#006A4E" />
-                                    <stop offset="100%" stopColor="#004D38" />
-                                </linearGradient>
+                            <svg
+                                viewBox="0 0 100 100"
+                                className="w-full h-full transform-gpu"
+                                style={{ transform: "rotate(-90deg)" }}
+                            >
+                                <defs>
+                                    <linearGradient
+                                        id="wheel-grad-green"
+                                        x1="0%"
+                                        y1="0%"
+                                        x2="100%"
+                                        y2="100%"
+                                    >
+                                        <stop offset="0%" stopColor="#007A5A" />
+                                        <stop offset="100%" stopColor="#004D38" />
+                                    </linearGradient>
+                                    <linearGradient
+                                        id="wheel-grad-red"
+                                        x1="0%"
+                                        y1="0%"
+                                        x2="100%"
+                                        y2="100%"
+                                    >
+                                        <stop offset="0%" stopColor="#E11D48" />
+                                        <stop offset="100%" stopColor="#9F1239" />
+                                    </linearGradient>
+                                    <filter id="text-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="0.5" stdDeviation="0.4" floodColor="#000000" floodOpacity="0.8" />
+                                    </filter>
+                                </defs>
 
-                                {/* Refined Deep Bangladesh Red Gradient */}
-                                <linearGradient
-                                    id="wheel-grad-red"
-                                    x1="0%"
-                                    y1="0%"
-                                    x2="100%"
-                                    y2="100%"
-                                >
-                                    <stop offset="0%" stopColor="#E11D48" />
-                                    <stop offset="60%" stopColor="#CE1126" />
-                                    <stop offset="100%" stopColor="#9F1239" />
-                                </linearGradient>
-                            </defs>
+                                {/* Background Circle */}
+                                <circle cx="50" cy="50" r="50" fill="#0f172a" />
 
-                            {/* Render Memoized Wheel Segments */}
-                            {segments.map((seg) => (
-                                <g key={seg.id}>
+                                {/* Render Wheel Slices */}
+                                {segments.map((seg) => (
                                     <path
+                                        key={seg.id}
                                         d={seg.pathD}
                                         fill={seg.fill}
-                                        stroke="rgba(255, 255, 255, 0.22)"
-                                        strokeWidth="0.3"
+                                        stroke="#ffffff"
+                                        strokeWidth="0.5"
+                                        strokeOpacity="0.25"
                                     />
+                                ))}
 
-                                    {/* Segment Content: Emoji & Title */}
-                                    <g
-                                        transform={`rotate(${seg.rotationAngle}, 50, 50)`}
-                                        className="pointer-events-none"
-                                    >
-                                        {/* Category Emoji */}
-                                        <text
-                                            x="91.5"
-                                            y="50.2"
-                                            fontSize="3.4"
-                                            textAnchor="middle"
-                                            dominantBaseline="central"
+                                {/* High-Contrast Sector Labels & Emojis */}
+                                {segments.map((seg) => {
+                                    const textRadius = 35;
+                                    const rad = (Math.PI * seg.rotationAngle) / 180;
+                                    const textX = 50 + textRadius * Math.cos(rad);
+                                    const textY = 50 + textRadius * Math.sin(rad);
+
+                                    return (
+                                        <g
+                                            key={`label-${seg.id}`}
+                                            transform={`translate(${textX}, ${textY}) rotate(${seg.rotationAngle + 90})`}
+                                            className="pointer-events-none select-none"
                                         >
-                                            {seg.emoji}
-                                        </text>
+                                            <text
+                                                x="0"
+                                                y="-4"
+                                                textAnchor="middle"
+                                                fontSize="3.8"
+                                                className="select-none"
+                                            >
+                                                {seg.emoji}
+                                            </text>
+                                            <text
+                                                x="0"
+                                                y="1.5"
+                                                textAnchor="middle"
+                                                fill="#ffffff"
+                                                fontSize="2.4"
+                                                fontWeight="900"
+                                                letterSpacing="0.04em"
+                                                filter="url(#text-shadow)"
+                                                className="uppercase select-none"
+                                            >
+                                                {seg.shortTitle}
+                                            </text>
+                                        </g>
+                                    );
+                                })}
+                            </svg>
+                        </motion.div>
+                    </div>
 
-                                        {/* Segment Title */}
-                                        <text
-                                            x="85.5"
-                                            y="50.4"
-                                            fill="#FFFFFF"
-                                            fontSize="2.7"
-                                            fontWeight="800"
-                                            letterSpacing="0.03em"
-                                            textAnchor="end"
-                                            dominantBaseline="central"
-                                            className="uppercase font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]"
-                                        >
-                                            {seg.shortTitle}
-                                        </text>
-                                    </g>
-                                </g>
-                            ))}
-
-                            {/* Sleek Inner and Outer Rim Hairline Accents */}
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="49.7"
-                                fill="none"
-                                stroke="rgba(255, 255, 255, 0.2)"
-                                strokeWidth="0.4"
-                            />
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="14.5"
-                                fill="none"
-                                stroke="rgba(255, 255, 255, 0.15)"
-                                strokeWidth="0.3"
-                            />
-                        </svg>
-                    </motion.div>
-
-                    {/* Interactive Center Hub Medallion */}
-                    <div className="absolute inset-0 flex items-center justify-center z-30">
-                        <button
+                    {/* Central Medallion Button */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center">
+                        <motion.button
+                            whileHover={isSpinning || disabled || loading || wheelFacts.length === 0 ? {} : { scale: 1.08 }}
+                            whileTap={isSpinning || disabled || loading || wheelFacts.length === 0 ? {} : { scale: 0.94 }}
                             onClick={spin}
                             disabled={isSpinning || disabled || loading || wheelFacts.length === 0}
                             title="Click to spin"
@@ -355,7 +363,7 @@ export function SpinWheel({
                                 "group relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 rounded-full p-1 bg-gradient-to-b from-amber-200 via-amber-500 to-amber-700 shadow-[0_6px_20px_rgba(0,0,0,0.45)] border border-amber-100/50 transition-all duration-300",
                                 isSpinning || disabled || loading || wheelFacts.length === 0
                                     ? "cursor-not-allowed opacity-90 scale-95"
-                                    : "cursor-pointer hover:scale-105 active:scale-95 hover:shadow-[0_8px_25px_rgba(251,191,36,0.4)]"
+                                    : "cursor-pointer hover:shadow-[0_8px_25px_rgba(251,191,36,0.4)]"
                             )}
                         >
                             {/* Inner Disc */}
@@ -373,7 +381,7 @@ export function SpinWheel({
                                     </>
                                 )}
                             </div>
-                        </button>
+                        </motion.button>
                     </div>
 
                 </div>
@@ -381,15 +389,17 @@ export function SpinWheel({
 
             {/* Clean Modern Interactive Controls */}
             <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-center gap-3.5 z-20">
-                {/* Main Spin Action Button */}
-                <button
+                {/* Main Spin Action Button with Shimmer */}
+                <motion.button
+                    whileHover={isSpinning || disabled || loading || wheelFacts.length === 0 ? {} : { scale: 1.04, y: -2 }}
+                    whileTap={isSpinning || disabled || loading || wheelFacts.length === 0 ? {} : { scale: 0.96 }}
                     onClick={spin}
                     disabled={isSpinning || disabled || loading || wheelFacts.length === 0}
                     className={cn(
                         "group relative px-8 sm:px-11 md:px-13 py-3.5 sm:py-4 rounded-full font-black text-sm sm:text-base md:text-lg tracking-[0.14em] uppercase transition-all duration-300 overflow-hidden transform-gpu",
                         isSpinning || disabled || loading || wheelFacts.length === 0
                             ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-500 scale-95 cursor-not-allowed border border-neutral-300 dark:border-neutral-700"
-                            : "bg-gradient-to-r from-bd-red via-rose-600 to-bd-red text-white hover:brightness-110 hover:scale-105 active:scale-95 shadow-[0_10px_25px_-5px_rgba(206,17,38,0.4)] hover:shadow-[0_14px_35px_-5px_rgba(206,17,38,0.55)] border-t border-white/20 cursor-pointer"
+                            : "bg-gradient-to-r from-bd-red via-rose-600 to-bd-red text-white hover:brightness-110 shadow-[0_10px_25px_-5px_rgba(206,17,38,0.4)] hover:shadow-[0_14px_35px_-5px_rgba(206,17,38,0.55)] border-t border-white/20 cursor-pointer"
                     )}
                 >
                     <span className="relative z-10 flex items-center gap-2.5">
@@ -409,28 +419,30 @@ export function SpinWheel({
                         </span>
                     </span>
 
-                    {/* Subtle Button Shine Highlight */}
+                    {/* Button Light Sweep Effect */}
                     {!isSpinning && !loading && (
                         <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
                     )}
-                </button>
+                </motion.button>
 
                 {/* Shuffle / Next Batch Button */}
                 {passedFacts && passedFacts.length > MAX_WHEEL_ITEMS && (
-                    <button
+                    <motion.button
+                        whileHover={isSpinning || loading ? {} : { scale: 1.04 }}
+                        whileTap={isSpinning || loading ? {} : { scale: 0.96 }}
                         onClick={handleShuffle}
                         disabled={isSpinning || loading}
                         className={cn(
                             "flex items-center gap-2 px-5 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 backdrop-blur-md border",
                             isSpinning
                                 ? "opacity-40 cursor-not-allowed bg-white/40 border-gray-200 text-gray-400"
-                                : "bg-white/80 dark:bg-neutral-800/80 hover:bg-white dark:hover:bg-neutral-700 text-gray-700 dark:text-gray-200 hover:text-bd-green border-gray-200/80 dark:border-neutral-700 shadow-sm hover:shadow-md active:scale-95 cursor-pointer"
+                                : "bg-white/80 dark:bg-neutral-800/80 hover:bg-white dark:hover:bg-neutral-700 text-gray-700 dark:text-gray-200 hover:text-bd-green border-gray-200/80 dark:border-neutral-700 shadow-sm hover:shadow-md cursor-pointer"
                         )}
                         title="Load next batch of treasures from database"
                     >
                         <Shuffle className="h-3.5 w-3.5" />
                         <span>Shuffle Items</span>
-                    </button>
+                    </motion.button>
                 )}
             </div>
 
@@ -456,3 +468,4 @@ export function SpinWheel({
     );
 }
 
+export default SpinWheel;
