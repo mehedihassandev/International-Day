@@ -61,6 +61,8 @@ export function apiServerError(error: string = 'Internal server error', details?
     {
       success: false,
       error,
+      message: typeof details === 'string' ? details : undefined,
+      details: process.env.NODE_ENV !== 'production' ? details : undefined,
     },
     { status: 500 }
   );
