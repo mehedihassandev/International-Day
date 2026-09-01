@@ -119,29 +119,28 @@ export default function Home() {
                 {/* Last Spun Winner Highlight Card */}
                 {lastSpunFact && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="max-w-xl mx-auto mt-6 p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl border-2 border-bd-green/30 shadow-xl flex items-center justify-between gap-4"
+                        className="max-w-xl mx-auto mt-6 p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl border border-bd-green/25 shadow-lg flex items-center justify-between gap-4"
                     >
                         <div className="flex items-center gap-3.5 min-w-0">
-                            <div className="w-12 h-12 rounded-xl bg-bd-green/10 text-bd-green flex items-center justify-center flex-shrink-0 text-2xl">
-                                🏆
+                            <div className="px-3 py-1.5 rounded-lg bg-bd-green/10 text-bd-green font-bold text-xs uppercase tracking-wider flex-shrink-0">
+                                Result
                             </div>
                             <div className="min-w-0">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-bd-green">
-                                    Latest Discovery
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                                    {lastSpunFact.category}
                                 </span>
-                                <h4 className="font-black text-gray-900 dark:text-white truncate text-sm sm:text-base">
+                                <h4 className="font-bold text-gray-900 dark:text-white truncate text-sm sm:text-base">
                                     {lastSpunFact.title}
                                 </h4>
                             </div>
                         </div>
                         <button
                             onClick={() => handlePreviewFact(lastSpunFact)}
-                            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-bd-green hover:bg-bd-green-dark text-white text-xs font-bold transition-all shadow-md flex-shrink-0 cursor-pointer"
+                            className="px-4 py-2 rounded-xl bg-bd-green hover:bg-bd-green-dark text-white text-xs font-bold transition-all shadow-sm flex-shrink-0 cursor-pointer"
                         >
-                            <Eye size={14} />
-                            <span>View Story</span>
+                            View Story
                         </button>
                     </motion.div>
                 )}

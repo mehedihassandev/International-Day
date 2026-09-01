@@ -1,28 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Utensils, Clock, Users, Maximize2 } from "lucide-react";
 import { Recipe } from "@/data/recipes";
-import { cn } from "@/lib/utils";
 
 interface RecipeCardProps {
     recipe: Recipe;
     onClick: () => void;
 }
 
-/**
- * Premium Recipe Card that triggers a modal.
- * Features a national color theme and elegant layout.
- */
 export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
-    const defaultSrc = recipe.image || `/images/recipes/${recipe.id}.jpg`;
-    const [imgSrc, setImgSrc] = React.useState(defaultSrc);
-
-    React.useEffect(() => {
-        setImgSrc(recipe.image || `/images/recipes/${recipe.id}.jpg`);
-    }, [recipe.image, recipe.id]);
+    const fallbackSrc = `/images/recipes/${recipe.id}.jpg`;
+    const [imgSrc, setImgSrc] = useState(recipe.image || fallbackSrc);
 
     return (
         <motion.div
@@ -31,24 +22,18 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ y: -5 }}
             onClick={onClick}
-            className="group relative bg-white/90 dark:from-gray-800/80 dark:to-gray-900/60 backdrop-blur-xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] dark:border-gray-700/50 rounded-3xl overflow-hidden shadow-soft transition-all duration-500 flex flex-col cursor-pointer"
+            className="group relative bg-white/90 backdrop-blur-xl border-2 border-bd-green/10 hover:border-bd-red/40 hover:bg-bd-red/5 hover:shadow-[0_10px_40px_-10px_rgba(244,42,65,0.15)] rounded-3xl overflow-hidden shadow-soft transition-all duration-500 flex flex-col cursor-pointer"
         >
-            {/* Top Banner (National Green Gradient) */}
             <div className="h-1.5 w-full bg-gradient-to-r from-bd-green via-bd-red to-bd-green" />
 
-            {/* Thumbnail Image */}
             <div className="w-full h-52 md:h-60 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
                 <Image
-                    src={imgSrc || `/images/recipes/${recipe.id}.jpg`}
+                    src={imgSrc}
                     alt={recipe.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                    onError={() => {
-                        if (imgSrc !== `/images/recipes/${recipe.id}.jpg`) {
-                            setImgSrc(`/images/recipes/${recipe.id}.jpg`);
-                        }
-                    }}
+                    onError={() => setImgSrc(fallbackSrc)}
                 />
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-2xl text-bd-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
@@ -56,29 +41,23 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                     </div>
                 </div>
 
-
-                    {/* Badges overlay on card */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                        <span className="px-3 py-1 bg-bd-red text-white text-[10px] font-black rounded-lg shadow-lg uppercase tracking-widest backdrop-blur-md">
-                            Top Choice
+                <div className="absolute top-4 left-4 flex items-center gap-2">
+                    <span className="px-3 py-1 bg-bd-red text-white text-[10px] font-black rounded-lg shadow-lg uppercase tracking-widest backdrop-blur-md">
+                        Top Choice
+                    </span>
+                    {recipe.images && recipe.images.length > 1 && (
+                        <span className="px-2.5 py-1 bg-black/60 text-white text-[10px] font-bold rounded-lg shadow-lg backdrop-blur-md flex items-center gap-1 border border-white/20">
+                            📸 {recipe.images.length}
                         </span>
-                        {recipe.images && recipe.images.length > 1 && (
-                            <span className="px-2.5 py-1 bg-black/60 text-white text-[10px] font-bold rounded-lg shadow-lg backdrop-blur-md flex items-center gap-1 border border-white/20">
-                                📸 {recipe.images.length}
-                            </span>
-                        )}
-                    </div>
+                    )}
                 </div>
+            </div>
 
-            {/* Content Section */}
             <div className="p-7 flex-1 flex flex-col">
-
                 <div className="flex items-center justify-between mb-4">
-                    <div className="flex gap-2">
-                        <span className="px-3 py-1 bg-bd-green/5 text-bd-green text-[10px] font-black rounded-full uppercase tracking-widest border border-bd-green/10">
-                            Authentic
-                        </span>
-                    </div>
+                    <span className="px-3 py-1 bg-bd-green/5 text-bd-green text-[10px] font-black rounded-full uppercase tracking-widest border border-bd-green/10">
+                        Authentic
+                    </span>
                     <div className="h-9 w-9 bg-bd-red/5 rounded-xl flex items-center justify-center text-bd-red group-hover:bg-bd-red group-hover:text-white transition-colors duration-300">
                         <Utensils size={16} />
                     </div>
@@ -89,10 +68,9 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                 </h3>
 
                 <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed mb-6 italic">
-                    "{recipe.description}"
+                    &ldquo;{recipe.description}&rdquo;
                 </p>
 
-                {/* Stats & Counts */}
                 <div className="mt-auto space-y-4">
                     <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500">
                         <span className="flex items-center gap-1.5">

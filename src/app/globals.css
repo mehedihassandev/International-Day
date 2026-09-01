@@ -6,66 +6,20 @@
   :root {
     --background: 150 20% 97%;
     --foreground: 160 30% 12%;
-    --card: 150 15% 99%;
-    --card-foreground: 160 30% 12%;
-    --popover: 150 15% 99%;
-    --popover-foreground: 160 30% 12%;
-    --primary: 164 100% 21%; /* BD Green */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 357 73% 57%; /* BD Red */
-    --secondary-foreground: 0 0% 100%;
     --muted: 150 10% 94%;
     --muted-foreground: 160 10% 40%;
-    --accent: 45 100% 50%; /* BD Gold */
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
     --border: 150 10% 88%;
-    --input: 150 10% 88%;
-    --ring: 164 100% 21%;
-    --radius: 1rem;
   }
   .dark {
     --background: 160 20% 5%;
     --foreground: 150 10% 95%;
-    --card: 160 15% 7%;
-    --card-foreground: 150 10% 95%;
-    --popover: 160 15% 7%;
-    --popover-foreground: 150 10% 95%;
-    --primary: 164 100% 25%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 357 73% 57%;
-    --secondary-foreground: 0 0% 98%;
     --muted: 160 10% 14%;
     --muted-foreground: 150 10% 60%;
-    --accent: 45 100% 50%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
     --border: 160 10% 16%;
-    --input: 160 10% 16%;
-    --ring: 164 100% 25%;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-bd-green/10 shadow-soft;
-  }
-  .glass-dark {
-    @apply bg-black/60 backdrop-blur-xl border border-bd-green/20 shadow-premium;
-  }
-  .metallic {
-    background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #4b5563 100%);
-    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  .bd-gradient {
-    background: linear-gradient(135deg, #006A4E 0%, #004d39 100%);
-  }
-  .bd-red-gradient {
-    background: linear-gradient(135deg, #F42A41 0%, #d12437 100%);
-  }
-
   /* Custom green-tinted scrollbar for modals */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -81,39 +35,23 @@
     background: rgba(0, 106, 78, 0.4);
   }
 
-  /* GPU-accelerated Needle Ticking & Wheel animations */
+  /* GPU-accelerated Needle Ticking */
   @keyframes needle-tick {
     0%, 100% {
       transform: translateX(-50%) rotate(0deg);
     }
     25% {
-      transform: translateX(-50%) rotate(-12deg);
+      transform: translateX(-50%) rotate(-7deg);
     }
     75% {
-      transform: translateX(-50%) rotate(12deg);
+      transform: translateX(-50%) rotate(7deg);
     }
   }
 
   .animate-needle-tick {
-    animation: needle-tick 0.12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    transform-origin: 50% 0%;
+    animation: needle-tick 0.09s cubic-bezier(0.35, 0, 0.25, 1) infinite;
+    transform-origin: 50% 20%;
     will-change: transform;
-  }
-
-  @keyframes led-glow {
-    0%, 100% {
-      opacity: 0.4;
-      transform: scale(0.9);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.15);
-      filter: drop-shadow(0 0 6px #FFD700);
-    }
-  }
-
-  .animate-led-glow {
-    animation: led-glow 2s ease-in-out infinite;
   }
 
   .will-change-transform {

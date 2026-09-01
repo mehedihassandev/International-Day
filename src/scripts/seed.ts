@@ -1,14 +1,11 @@
-import dotenv from 'dotenv';
-import path from 'path';
-
-// Load .env.local first, then fallback to .env
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-dotenv.config({ path: path.resolve(process.cwd(), '.env') });
-
 import mongoose from 'mongoose';
 import { Fact } from '../models/Fact';
 import { Recipe } from '../models/Recipe';
 import { initialFacts, initialRecipes } from './seed-data';
+
+// Load environment variables via Node.js native loadEnvFile
+try { process.loadEnvFile('.env.local'); } catch {}
+try { process.loadEnvFile('.env'); } catch {}
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -19,7 +16,7 @@ async function seedDatabase() {
   }
 
   console.log('🌱 Starting MongoDB database seeding...');
-  console.log(`Connecting to MongoDB Atlas...`);
+  console.log('Connecting to MongoDB Atlas...');
 
   try {
     await mongoose.connect(MONGODB_URI);

@@ -13,7 +13,6 @@
   "dependencies": {
     "@tanstack/react-query": "^5.102.8",
     "clsx": "^2.1.1",
-    "dotenv": "^16.5.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.475.0",
     "mongoose": "^9.9.4",

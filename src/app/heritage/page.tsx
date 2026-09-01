@@ -136,12 +136,8 @@ export default function HeritagePage() {
 }
 
 function FactCard({ fact, index, onSelect }: { fact: Fact; index: number; onSelect: () => void }) {
-    const defaultSrc = fact.image || `/images/facts/${fact.id}.jpg`;
-    const [imgSrc, setImgSrc] = React.useState(defaultSrc);
-
-    React.useEffect(() => {
-        setImgSrc(fact.image || `/images/facts/${fact.id}.jpg`);
-    }, [fact.image, fact.id]);
+    const fallbackSrc = `/images/facts/${fact.id}.jpg`;
+    const [imgSrc, setImgSrc] = React.useState(fact.image || fallbackSrc);
 
     return (
         <motion.div
@@ -155,16 +151,12 @@ function FactCard({ fact, index, onSelect }: { fact: Fact; index: number; onSele
             {/* Image Section */}
             <div className="relative w-full h-48 overflow-hidden bg-earth-light/20">
                 <Image
-                    src={imgSrc || `/images/facts/${fact.id}.jpg`}
+                    src={imgSrc}
                     alt={fact.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={() => {
-                        if (imgSrc !== `/images/facts/${fact.id}.jpg`) {
-                            setImgSrc(`/images/facts/${fact.id}.jpg`);
-                        }
-                    }}
+                    onError={() => setImgSrc(fallbackSrc)}
                 />
 
                 {/* Multi-Image Badge */}
