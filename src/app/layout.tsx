@@ -1,6 +1,5 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
 import { Navigation } from '@/components/Navigation';
 import { QueryProvider } from '@/providers/QueryProvider';
 
@@ -45,7 +44,6 @@ export default function RootLayout({
         <QueryProvider>
           <Navigation />
           {children}
-          <Toaster />
         </QueryProvider>
       </body>
     </html>
