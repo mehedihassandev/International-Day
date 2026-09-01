@@ -18,8 +18,8 @@ const FOOD_CATEGORIES = [
 ] as const;
 
 /**
- * Bengali Kitchen page powered by TanStack Query and MongoDB.
- * Features dynamic data fetching, category filtering, and search.
+ * Bengali Kitchen page powered by TanStack Query and MongoDB API.
+ * The API is always the single source of truth.
  */
 export default function FoodsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");

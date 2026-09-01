@@ -42,7 +42,12 @@ export function SpinWheel({
     const isSpinningRef = useRef(false);
 
     // Active subset of facts shown on the wheel
-    const [wheelFacts, setWheelFacts] = useState<Fact[]>([]);
+    const [wheelFacts, setWheelFacts] = useState<Fact[]>(() => {
+        if (passedFacts && passedFacts.length > 0) {
+            return passedFacts.slice(0, MAX_WHEEL_ITEMS);
+        }
+        return [];
+    });
     const [factPoolIndex, setFactPoolIndex] = useState(0);
 
     // Initialize or update wheel items when passedFacts arrive

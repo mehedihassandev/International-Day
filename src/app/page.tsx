@@ -8,6 +8,7 @@ import { SpinWheel } from "@/components/SpinWheel";
 import { FactModal } from "@/components/FactModal";
 import { Fact } from "@/data/facts";
 import { useFacts } from "@/hooks/useFacts";
+import { useRecipes } from "@/hooks/useRecipes";
 import { Loader } from "@/components/Loader";
 import {
     History,
@@ -23,11 +24,15 @@ import {
 /**
  * Home page for the Bangladesh Cultural Showcase.
  * Features a high-performance interactive Spin Wheel, curated spotlights,
- * and immersive cultural discovery.
+ * and data fetched directly from the API as the single source of truth.
  */
 export default function Home() {
     const { data: factsResponse, isLoading } = useFacts({ limit: 50 });
     const facts = useMemo(() => factsResponse?.data || [], [factsResponse?.data]);
+    const totalFacts = factsResponse?.total ?? 0;
+
+    const { data: recipesResponse } = useRecipes({ limit: 0 });
+    const totalRecipes = recipesResponse?.total ?? 0;
 
     const [selectedFact, setSelectedFact] = useState<Fact | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -118,11 +123,11 @@ export default function Home() {
                     >
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-bd-green" />
-                            <span>50+ National Treasures</span>
+                            <span>{isLoading ? "…" : `${totalFacts}+`} National Treasures</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-bd-red" />
-                            <span>15+ Authentic Recipes</span>
+                            <span>{totalRecipes > 0 ? `${totalRecipes}+` : "…"} Authentic Recipes</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-amber-500" />
@@ -286,7 +291,7 @@ export default function Home() {
                                 href="/heritage"
                                 className="inline-flex items-center gap-2 text-sm font-bold text-bd-green dark:text-emerald-400 hover:text-bd-red transition-colors"
                             >
-                                <span>Browse all 50+ items</span>
+                                <span>Browse all {isLoading ? "…" : `${totalFacts}+`} items</span>
                                 <ArrowRight size={16} />
                             </Link>
                         </div>
@@ -406,4 +411,3 @@ export default function Home() {
         </div>
     );
 }
-

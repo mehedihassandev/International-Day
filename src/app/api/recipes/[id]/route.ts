@@ -14,8 +14,9 @@ interface RouteContext {
   params: Promise<{ id: string }>;
 }
 
-import { initialRecipes } from '@/scripts/seed-data';
-
+/**
+ * Helper to query by slug ID or MongoDB ObjectId
+ */
 function buildIdQuery(id: string) {
   if (mongoose.Types.ObjectId.isValid(id)) {
     return { $or: [{ id }, { _id: id }] };
@@ -33,19 +34,13 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   try {
     await connectToDatabase();
     const recipe = await Recipe.findOne(buildIdQuery(id)).lean();
-    if (recipe) {
-      return apiSuccess(recipe);
+    if (!recipe) {
+      return apiNotFound(`Recipe with identifier '${id}' not found`);
     }
-  } catch (error) {
-    console.warn(`Recipe ${id} query error, checking static fallback:`, error);
+    return apiSuccess(recipe);
+  } catch (error: any) {
+    return apiServerError(`Failed to retrieve recipe '${id}'`, error.message || error);
   }
-
-  const fallback = initialRecipes.find((r) => r.id === id);
-  if (fallback) {
-    return apiSuccess(fallback);
-  }
-
-  return apiNotFound(`Recipe with identifier '${id}' not found`);
 }
 
 /**

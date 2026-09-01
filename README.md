@@ -118,10 +118,7 @@ The app provides Next.js 15 REST API endpoints for full data management:
 │   ├── lib/
 │   │   ├── mongodb.ts       # Cached Mongoose connection pool
 │   │   ├── api-response.ts  # Standardized API response helpers
-│   │   └── validations/     # Zod request validation schemas
-│   ├── scripts/
-│   │   └── seed.ts          # CLI database seeding script
-│   └── data/                # Static fallback datasets (facts.ts, recipes.ts)
+│   └── data/                # TypeScript type definitions (facts.ts, recipes.ts)
 ├── public/                  # Static assets
 └── next.config.ts           # Next.js configuration
 ```

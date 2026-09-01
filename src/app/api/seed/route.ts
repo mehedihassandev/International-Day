@@ -2,12 +2,11 @@ import { NextRequest } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Fact } from '@/models/Fact';
 import { Recipe } from '@/models/Recipe';
-import { initialFacts, initialRecipes } from '@/scripts/seed-data';
 import { apiSuccess, apiBadRequest, apiServerError } from '@/lib/api-response';
 
 /**
  * POST /api/seed
- * Populates MongoDB Atlas with cultural facts and traditional recipes.
+ * Populates MongoDB Atlas from request payload.
  * Idempotent: Uses upsert to avoid duplicate key errors.
  */
 export async function POST(request: NextRequest) {
@@ -22,9 +21,12 @@ export async function POST(request: NextRequest) {
     }
 
     await connectToDatabase();
+    const body = await request.json().catch(() => ({}));
+    const factsList = Array.isArray(body.facts) ? body.facts : [];
+    const recipesList = Array.isArray(body.recipes) ? body.recipes : [];
 
     // 1. Seed Facts
-    const factOperations = initialFacts.map((fact) => ({
+    const factOperations = factsList.map((fact: any) => ({
       updateOne: {
         filter: { id: fact.id },
         update: { $set: fact },
@@ -33,7 +35,7 @@ export async function POST(request: NextRequest) {
     }));
 
     // 2. Seed Recipes
-    const recipeOperations = initialRecipes.map((recipe) => ({
+    const recipeOperations = recipesList.map((recipe: any) => ({
       updateOne: {
         filter: { id: recipe.id },
         update: { $set: recipe },
@@ -41,10 +43,21 @@ export async function POST(request: NextRequest) {
       },
     }));
 
-    const [factsResult, recipesResult] = await Promise.all([
-      Fact.bulkWrite(factOperations),
-      Recipe.bulkWrite(recipeOperations),
-    ]);
+    let factsUpserted = 0;
+    let factsModified = 0;
+    let recipesUpserted = 0;
+    let recipesModified = 0;
+
+    if (factOperations.length > 0) {
+      const res = await Fact.bulkWrite(factOperations);
+      factsUpserted = res.upsertedCount;
+      factsModified = res.modifiedCount;
+    }
+    if (recipeOperations.length > 0) {
+      const res = await Recipe.bulkWrite(recipeOperations);
+      recipesUpserted = res.upsertedCount;
+      recipesModified = res.modifiedCount;
+    }
 
     const totalFacts = await Fact.countDocuments();
     const totalRecipes = await Recipe.countDocuments();
@@ -52,17 +65,17 @@ export async function POST(request: NextRequest) {
     return apiSuccess(
       {
         facts: {
-          upserted: factsResult.upsertedCount,
-          modified: factsResult.modifiedCount,
+          upserted: factsUpserted,
+          modified: factsModified,
           total: totalFacts,
         },
         recipes: {
-          upserted: recipesResult.upsertedCount,
-          modified: recipesResult.modifiedCount,
+          upserted: recipesUpserted,
+          modified: recipesModified,
           total: totalRecipes,
         },
       },
-      'Database seeded successfully from MongoDB Atlas'
+      'Database seeded successfully'
     );
   } catch (error: any) {
     return apiServerError('Database seeding failed', error.message || error);

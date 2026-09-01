@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
 const CATEGORIES = ["All", "History", "Culture", "Nature", "Art", "GI Product"] as const;
 
 /**
- * Heritage Gallery page powered by TanStack Query and MongoDB.
- * Provides live category filtering, search, and detail modal with client-side caching.
+ * Heritage Gallery page powered by TanStack Query and MongoDB API.
+ * The API is always the single source of truth.
  */
 export default function HeritagePage() {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -248,4 +248,3 @@ function FactCard({ fact, index, onSelect }: { fact: Fact; index: number; onSele
         </motion.div>
     );
 }
-
