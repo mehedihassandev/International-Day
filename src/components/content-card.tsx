@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { AIInteraction } from './ai-interaction';
 
 interface ContentCardProps {
   type: 'fact' | 'recipe';
@@ -12,7 +11,7 @@ interface ContentCardProps {
   id: string;
 }
 
-export function ContentCard({ type, emoji, title, description, details, id }: ContentCardProps) {
+export function ContentCard({ type, emoji, title, description, details }: ContentCardProps) {
   return (
     <Card className="h-full flex flex-col overflow-hidden group hover:shadow-lg transition-all duration-300 border-border/50">
       <CardHeader className="relative pb-0">
@@ -49,14 +48,6 @@ export function ContentCard({ type, emoji, title, description, details, id }: Co
           </div>
         )}
       </CardContent>
-
-      <CardFooter className="pt-0 pb-6 flex justify-between items-center">
-        <AIInteraction 
-          type={type} 
-          title={title} 
-          content={description + (details ? ' ' + details.join(', ') : '')} 
-        />
-      </CardFooter>
     </Card>
   );
 }

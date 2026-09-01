@@ -2,41 +2,42 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { facts, Fact } from "@/data/facts";
+import { Fact } from "@/data/facts";
 import { cn } from "@/lib/utils";
 import { Trophy, RefreshCw } from "lucide-react";
 
 interface SpinWheelProps {
     onResult: (fact: Fact) => void;
     disabled?: boolean;
+    facts?: Fact[];
+    loading?: boolean;
 }
 
 /**
- * Premium Spin Wheel component with enhanced aesthetics.
- * Dynamically scales to support any number of facts with optimized text and colors.
+ * Premium Spin Wheel component powered directly by MongoDB Atlas API.
+ * Dynamically scales to support any number of facts from the database.
  */
-export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
+export function SpinWheel({ onResult, disabled, facts: passedFacts, loading }: SpinWheelProps) {
     const [isSpinning, setIsSpinning] = useState(false);
     const [rotation, setRotation] = useState(0);
     const controls = useAnimation();
 
-    // Use all facts for the wheel to ensure a rich experience
-    // Initialized with facts to prevent empty state on load
-    const [wheelFacts, setWheelFacts] = useState<Fact[]>(facts);
+    const [wheelFacts, setWheelFacts] = useState<Fact[]>(passedFacts || []);
 
     useEffect(() => {
-        // Shuffle the facts on mount for variety
-        setWheelFacts([...facts].sort(() => 0.5 - Math.random()));
-    }, []);
+        if (passedFacts && passedFacts.length > 0) {
+            setWheelFacts([...passedFacts].sort(() => 0.5 - Math.random()));
+        }
+    }, [passedFacts]);
 
     /**
      * Triggers the physics-based spin animation.
      */
     const spin = async () => {
-        if (isSpinning) return;
+        if (isSpinning || wheelFacts.length === 0) return;
         setIsSpinning(true);
 
-        // Calculate a random spin (at least 7 full rotations + random angle for more drama)
+        // Calculate a random spin (at least 7 full rotations + random angle for drama)
         const extraRotations = 7 + Math.floor(Math.random() * 5);
         const randomAngle = Math.floor(Math.random() * 360);
         const totalRotation = rotation + extraRotations * 360 + randomAngle;
@@ -45,8 +46,8 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
         await controls.start({
             rotate: totalRotation,
             transition: {
-                duration: 5, // Longer spin for more anticipation
-                ease: [0.15, 0, 0.15, 1], // Custom "physics" ease-out
+                duration: 5,
+                ease: [0.15, 0, 0.15, 1],
             },
         });
 
@@ -57,8 +58,6 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
         const segmentCount = wheelFacts.length;
         const segmentAngle = 360 / segmentCount;
 
-        // The pointer is at the top (0 degrees in SVG coordinates after -90deg rotation)
-        // Wheel rotates clockwise, so we subtract the normalized angle from 360
         const winningIndex = Math.floor(
             ((360 - normalizedAngle + segmentAngle / 2) % 360) / segmentAngle,
         );
@@ -154,7 +153,7 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                                         d={`M 50 50 L ${x1} ${y1} A 50 50 0 0 1 ${x2} ${y2} Z`}
                                         fill={
                                             segmentCount % 2 !== 0 && i === segmentCount - 1
-                                                ? "url(#segment-red)" // Use red for the odd last one or a special color
+                                                ? "url(#segment-red)"
                                                 : i % 2 === 0
                                                 ? "url(#segment-green)"
                                                 : "url(#segment-red)"
@@ -196,36 +195,34 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                 </motion.div>
             </div>
 
-            {/* Control Button (Elegant Luxury Style) */}
+            {/* Control Button */}
             <div className="mt-16 group relative">
-                {/* Glow behind button */}
                 <div className="absolute inset-0 bg-bd-red/30 blur-3xl rounded-full scale-150 group-hover:bg-bd-red/50 transition-colors duration-500" />
 
                 <button
                     onClick={spin}
-                    disabled={isSpinning || disabled}
+                    disabled={isSpinning || disabled || loading || wheelFacts.length === 0}
                     className={cn(
                         "relative px-12 py-4 rounded-2xl font-black text-xl tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden transform-gpu",
-                        isSpinning || disabled
+                        isSpinning || disabled || loading || wheelFacts.length === 0
                             ? "bg-neutral-200 text-neutral-400 scale-95 border-neutral-300"
-                            : "bg-bd-red text-white hover:scale-105 active:scale-95 shadow-[0_15px_40px_rgba(244,42,65,0.4)] border-b-8 border-[#b91c1c] hover:border-b-[12px] hover:-translate-y-1",
+                            : "bg-bd-red text-white hover:scale-105 active:scale-95 shadow-[0_15px_40px_rgba(244,42,65,0.4)] border-b-8 border-[#b91c1c] hover:border-b-[12px] hover:-translate-y-1 cursor-pointer",
                     )}
                 >
                     <span className="relative z-10 flex items-center gap-4">
-                        {isSpinning ? (
+                        {isSpinning || loading ? (
                             <RefreshCw className="animate-spin h-7 w-7" />
                         ) : (
                             <Trophy className="h-7 w-7" />
                         )}
-                        {isSpinning ? "SPINNING..." : "SPIN NOW"}
+                        {loading ? "LOADING FROM DB..." : isSpinning ? "SPINNING..." : "SPIN NOW"}
                     </span>
 
                     {/* Shimmer Effect */}
-                    {!isSpinning && (
+                    {!isSpinning && !loading && wheelFacts.length > 0 && (
                         <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                     )}
 
-                    {/* Decorative Corner Emblems */}
                     <div className="absolute top-1 left-1 w-2 h-2 bg-white/20 rounded-full" />
                     <div className="absolute bottom-1 right-1 w-2 h-2 bg-white/20 rounded-full" />
                 </button>
@@ -239,7 +236,7 @@ export function SpinWheel({ onResult, disabled }: SpinWheelProps) {
                 className="mt-8 text-muted-foreground font-medium flex items-center gap-2"
             >
                 <span className="w-2 h-2 rounded-full bg-bd-green animate-pulse" />
-                All {facts.length} national treasures are on the wheel
+                All {wheelFacts.length} national treasures loaded from database
             </motion.p>
         </div>
     );

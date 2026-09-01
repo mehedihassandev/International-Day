@@ -29,7 +29,10 @@ Originally conceptualized for **International Mother Language Day**, this projec
 
 | Technology | Purpose |
 | ---------- | ------- |
-| **Next.js 15 (App Router)** | Core React framework, Routing, and Native Image Optimization |
+| **Next.js 15 (App Router)** | Core React framework, Serverless Route Handlers & Image Optimization |
+| **MongoDB & Mongoose** | Production database and typed ODM with serverless connection pooling |
+| **TanStack Query (React Query)** | Asynchronous state management, intelligent caching, and server-state synchronization |
+| **Zod** | Runtime API request validation and sanitization |
 | **TypeScript** | Static typing and robust code foundation |
 | **Tailwind CSS** | Atomic highly-customized styling and theming |
 | **Framer Motion** | Complex UI transitions and gesture animations |
@@ -40,44 +43,87 @@ Originally conceptualized for **International Mother Language Day**, this projec
 To get a local development environment up and running, follow these simple steps:
 
 ### Prerequisites
-Make sure you have Node.js (v18.x or later) installed on your machine.
+- Node.js (v18.x or later)
+- MongoDB instance (local or [MongoDB Atlas](https://www.mongodb.com/atlas))
 
-### Installation
+### Installation & Setup
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/mehedihassandev/International-Day.git
-    cd International-Day
-    ```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mehedihassandev/International-Day.git
+   cd International-Day
+   ```
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3.  **Start the development server**
-    ```bash
-    npm run dev
-    ```
+3. **Configure Environment Variables**
+   Copy `.env.example` to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Set your `MONGODB_URI`:
+   ```env
+   MONGODB_URI=mongodb://localhost:27017/international_day
+   ```
 
-4.  **Explore the Showcase!**
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. **Seed the MongoDB Database**
+   Populate your MongoDB database with historical facts and authentic recipes:
+   ```bash
+   npm run db:seed
+   ```
+
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Explore the Showcase!**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📡 REST API Documentation
+
+The app provides Next.js 15 REST API endpoints for full data management:
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/facts` | List facts with filters (`?category=`, `?search=`, `?page=`, `?limit=`) |
+| `GET` | `/api/facts/[id]` | Get single fact by slug ID or MongoDB `_id` |
+| `POST` | `/api/facts` | Create new fact (validated with Zod) |
+| `PUT` | `/api/facts/[id]` | Update fact by ID |
+| `DELETE` | `/api/facts/[id]` | Delete fact by ID |
+| `GET` | `/api/facts/random` | Get random facts for Spin Wheel (`?count=20`) |
+| `GET` | `/api/recipes` | List recipes with filters (`?category=`, `?search=`, `?limit=`) |
+| `GET` | `/api/recipes/[id]`| Get single recipe by slug ID or `_id` |
+| `POST` | `/api/recipes` | Create new recipe (validated with Zod) |
+| `PUT` | `/api/recipes/[id]`| Update recipe by ID |
+| `DELETE` | `/api/recipes/[id]`| Delete recipe by ID |
+| `POST` | `/api/seed` | Seed/re-populate database from data templates |
 
 ## 📂 Project Structure
 
 ```text
 ├── src/
-│   ├── app/             # Standard Next.js 15 App Router pages & layouts
-│   ├── components/      # Reusable React UI elements (Modals, Cards, SpinWheel)
-│   ├── data/            # Local data models & structured objects (facts.ts, recipes.ts)
-│   ├── lib/             # Utility functions
-├── public/              # Static assets (fonts, icons)
-├── tailwind.config.ts   # Custom theme setup injecting custom `bd-green` and `bd-red` variable tokens
-└── next.config.ts       # Network security rules & remotePatterns caching config for Next Images
+│   ├── app/
+│   │   ├── api/             # Next.js 15 REST API routes (facts, recipes, seed)
+│   │   ├── foods/           # Bengali Kitchen page (dynamic data & filters)
+│   │   ├── heritage/        # Heritage Gallery page (dynamic data & search)
+│   │   ├── layout.tsx       # Global root layout
+│   │   └── page.tsx         # Home page with dynamic Spin Wheel
+│   ├── components/          # Reusable UI elements (Modals, Cards, SpinWheel)
+│   ├── models/              # Mongoose schemas & models (Fact.ts, Recipe.ts)
+│   ├── services/            # Client/server data fetchers with resilient fallback
+│   ├── lib/
+│   │   ├── mongodb.ts       # Cached Mongoose connection pool
+│   │   ├── api-response.ts  # Standardized API response helpers
+│   │   └── validations/     # Zod request validation schemas
+│   ├── scripts/
+│   │   └── seed.ts          # CLI database seeding script
+│   └── data/                # Static fallback datasets (facts.ts, recipes.ts)
+├── public/                  # Static assets
+└── next.config.ts           # Next.js configuration
 ```
 
 ## 📜 License

@@ -6,19 +6,22 @@ import { motion } from "framer-motion";
 import { SpinWheel } from "@/components/SpinWheel";
 import { FactModal } from "@/components/FactModal";
 import { Fact } from "@/data/facts";
-import { Sparkles, History, Globe, Landmark } from "lucide-react";
+import { useFacts } from "@/hooks/useFacts";
+import { History, Globe, Landmark } from "lucide-react";
 
 /**
  * Home page for the Bangladesh Cultural Showcase.
- * Features the Interactive Spin Wheel as the primary experience.
+ * Features the Interactive Spin Wheel powered by TanStack Query and MongoDB.
  */
 export default function Home() {
+    const { data: factsResponse, isLoading } = useFacts({ limit: 50 });
+    const facts = factsResponse?.data || [];
+
     const [selectedFact, setSelectedFact] = useState<Fact | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleSpinResult = (fact: Fact) => {
         setSelectedFact(fact);
-        // Reset before new discovery
         setIsModalOpen(false);
 
         // Slight delay before opening modal for "wow" effect
@@ -32,18 +35,15 @@ export default function Home() {
         <div className="min-h-screen bg-gradient-to-b from-bd-green-soft via-white to-bd-red-soft overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="fixed inset-0 pointer-events-none z-0">
-                {/* Subtle Bangladesh flag-inspired background pattern */}
                 <div className="absolute inset-0 bg-gradient-to-b from-bd-green/[0.03] via-transparent to-bd-red/[0.03]" />
                 <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-bd-green/8 rounded-full blur-[120px]" />
                 <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-bd-red/8 rounded-full blur-[120px]" />
-                {/* Central red circle reminiscent of BD flag */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bd-red/[0.04] rounded-full blur-[150px]" />
             </div>
 
             <div className="container mx-auto px-4 relative pt-8 pb-16">
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto text-center mb-12">
-                    {/* Decorative BD flag colors line */}
                     <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
@@ -81,6 +81,8 @@ export default function Home() {
                     className="relative z-10"
                 >
                     <SpinWheel
+                        facts={facts}
+                        loading={isLoading}
                         onResult={handleSpinResult}
                         disabled={isModalOpen}
                     />
