@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Fact } from "@/data/facts";
 import { useFacts } from "@/hooks/useFacts";
 import { FactModal } from "@/components/FactModal";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loader } from "@/components/Loader";
 import { Library, Maximize2, Search, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -98,18 +98,8 @@ export default function HeritagePage() {
 
                 {/* Facts Grid */}
                 {isLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                        {Array.from({ length: 6 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="bg-white/80 rounded-2xl border border-bd-green/10 p-4 space-y-4 overflow-hidden"
-                            >
-                                <Skeleton className="w-full h-48 rounded-xl" />
-                                <Skeleton className="w-20 h-5 rounded-full" />
-                                <Skeleton className="w-3/4 h-6 rounded-md" />
-                                <Skeleton className="w-full h-12 rounded-md" />
-                            </div>
-                        ))}
+                    <div className="py-20 flex flex-col items-center justify-center">
+                        <Loader size="lg" text="Discovering Heritage Archives..." fullHeight />
                     </div>
                 ) : facts.length === 0 ? (
                     <div className="text-center py-16 bg-white/60 backdrop-blur-sm rounded-3xl border border-bd-green/10 max-w-lg mx-auto">

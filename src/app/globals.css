@@ -80,6 +80,49 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 106, 78, 0.4);
   }
+
+  /* GPU-accelerated Needle Ticking & Wheel animations */
+  @keyframes needle-tick {
+    0%, 100% {
+      transform: translateX(-50%) rotate(0deg);
+    }
+    25% {
+      transform: translateX(-50%) rotate(-12deg);
+    }
+    75% {
+      transform: translateX(-50%) rotate(12deg);
+    }
+  }
+
+  .animate-needle-tick {
+    animation: needle-tick 0.12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform-origin: 50% 0%;
+    will-change: transform;
+  }
+
+  @keyframes led-glow {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 6px #FFD700);
+    }
+  }
+
+  .animate-led-glow {
+    animation: led-glow 2s ease-in-out infinite;
+  }
+
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .contain-paint {
+    contain: paint layout;
+  }
 }
 
 @layer base {

@@ -6,7 +6,7 @@ import { Recipe } from "@/data/recipes";
 import { useRecipes } from "@/hooks/useRecipes";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeModal } from "@/components/RecipeModal";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loader } from "@/components/Loader";
 import { UtensilsCrossed, Flame, Leaf, Coffee, Search, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -105,21 +105,8 @@ export default function FoodsPage() {
 
                 {/* Recipes Grid */}
                 {isLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {Array.from({ length: 6 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="bg-white/80 rounded-2xl border border-bd-green/10 p-4 space-y-4 overflow-hidden"
-                            >
-                                <Skeleton className="w-full h-56 rounded-xl" />
-                                <Skeleton className="w-3/4 h-6 rounded-md" />
-                                <Skeleton className="w-full h-14 rounded-md" />
-                                <div className="flex gap-2">
-                                    <Skeleton className="w-20 h-6 rounded-md" />
-                                    <Skeleton className="w-20 h-6 rounded-md" />
-                                </div>
-                            </div>
-                        ))}
+                    <div className="py-20 flex flex-col items-center justify-center">
+                        <Loader size="lg" text="Preparing Bengali Kitchen Recipes..." fullHeight />
                     </div>
                 ) : recipes.length === 0 ? (
                     <div className="text-center py-16 bg-white/60 backdrop-blur-sm rounded-3xl border border-bd-green/10 max-w-lg mx-auto">
